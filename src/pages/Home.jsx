@@ -4,17 +4,24 @@ import FloatingBeans from "../components/FloatingBeans";
 import SectionTitle from "../components/SectionTitle";
 import { menuItems } from "../data/menuData";
 import { testimonials } from "../data/testimonials";
+import { galleryImages } from "../data/gallery";
 
 import CoffeeCard from "../components/CoffeeCard";
 import Button from "../components/Button";
 import { ArrowRight, Award, Leaf, Play, Users } from "lucide-react";
+import TestimonialCard from "../components/TestimonialCard";
+import GalleryCard from "../components/GalleryCard";
+import InstagramGrid from "../components/InstagramGrid";
+import NewsletterForm from "../components/NewsletterForm";
 
 const featured = menuItems.filter((item) =>
   ["esp-01", "cap-01", "lat-01", "moc-01"].includes(item.id),
 );
 
 const bestSellers = menuItems.filter((m) => m.popular).slice(0, 6);
-console.log(bestSellers.length);
+
+const galleryPreview = galleryImages.slice(0, 6);
+
 const fadeUp = {
   hidden: { opacity: 0, y: 30 },
   show: {
@@ -195,9 +202,59 @@ const Home = () => {
           />
           <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
             {testimonials.map((t, i) => (
-              <h1>{t.name}</h1>
+              <TestimonialCard key={t.id} testimonial={t} index={i} />
             ))}
           </div>
+        </div>
+      </section>
+
+      {/* Gallery Preview */}
+      <section className="py-24">
+        <div className="container-page">
+          <SectionTitle
+            eyebrow="A Glimpse Inside"
+            title="Gallery"
+            subtitle="Coffee, corners, and the little details that make the space."
+          />
+
+          <div className="columns-2 gap-4 sm:columns-3">
+            {galleryPreview.map((img, i) => (
+              <GalleryCard
+                key={img.id}
+                image={img}
+                index={i}
+                onClick={() => console.log("I Need To Add Gallery Later")}
+              />
+            ))}
+          </div>
+          <div className="mt-4 flex justify-center">
+            <Button to="/gallery" variant="ghost" icon={ArrowRight}>
+              View Full Gallery
+            </Button>
+          </div>
+        </div>
+      </section>
+
+      {/* Instagram Preview */}
+      <section className="bg-latte/25 py-24 dark:bg-white/3">
+        <div>
+          <SectionTitle eyebrow="@linncafe" title="Follow Along on Instagram" />
+          <InstagramGrid />
+        </div>
+      </section>
+
+      {/* Newsletter */}
+      <section className="relative overflow-hidden py-24">
+        <div className="absolute inset-0 bg-espresso"></div>
+        <FloatingBeans />
+        <div className="container-page relative text-center">
+          <SectionTitle
+            light
+            eyebrow="Stay in the Loop"
+            title="Get Roast Notes in Your Inbox"
+            subtitle="New seasonal drinks, roastery updates, and the occasional treat - straight to your inbox."
+          />
+          <NewsletterForm />
         </div>
       </section>
     </div>
