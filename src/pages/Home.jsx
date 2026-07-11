@@ -197,7 +197,7 @@ const Home = () => {
         <div className="container-page">
           <SectionTitle
             eyebrow="Kind Words"
-            title="What Our Gusts Say"
+            title="What Our Guests Say"
             subtitle="Real feedback from the regulars who make Linn Cafe feel like home."
           />
           <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
