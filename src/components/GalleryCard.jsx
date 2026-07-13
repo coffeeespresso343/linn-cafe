@@ -20,7 +20,7 @@ const GalleryCard = ({ image, index = 0, onClick }) => {
         loading="lazy"
         className="h-full w-full object-cover transition-transform duration-700 ease-smooth group-hover:scale-110"
       />
-      <div className="absolute inset-0 flex flex-col justify-end bg-linear-to-t from-espresso/80 via-espresso/0 to-transparent p-4 opacity-0 transition-opacity duration-400 group-hover:opacity-100">
+      <div className="absolute inset-0 flex flex-col justify-end bg-linear-to-t from-espresso/80 via-espresso/0 to-transparent p-4 opacity-100 md:opacity-0 transition-opacity duration-400 md:group-hover:opacity-100">
         <span className="mb-1 flex items-center gap-1.5 font-body text-[11px] uppercase tracking-wide text-gold">
           <Expand size={12} /> {image.category}
         </span>

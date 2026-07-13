@@ -1,4 +1,3 @@
-import React from "react";
 import FloatingBeans from "./FloatingBeans";
 import CoffeeSteam from "./CoffeeSteam";
 import { motion } from "framer-motion";

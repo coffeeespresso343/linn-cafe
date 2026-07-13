@@ -14,7 +14,7 @@ const Menu = () => {
   useEffect(() => {
     const t = window.setTimeout(() => setIsLoading(false), 600);
 
-    return () => window.clearTimeout();
+    return () => window.clearTimeout(t);
   }, []);
 
   const filtered = useMemo(() => {

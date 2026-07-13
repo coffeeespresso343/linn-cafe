@@ -1,8 +1,7 @@
 import { AnimatePresence, motion } from "framer-motion";
-import { Coffee, CoffeeIcon, Menu, Moon, Sun, X } from "lucide-react";
-import React from "react";
+import { Coffee, Menu, Moon, Sun, X } from "lucide-react";
 import { useState } from "react";
-import { NavLink } from "react-router-dom";
+import { NavLink, useLocation } from "react-router-dom";
 import { useTheme } from "../context/ThemeContext";
 import { useEffect } from "react";
 import Button from "./Button";
@@ -19,15 +18,18 @@ const LINKS = [
 const Navbar = () => {
   const [scrolled, setScrolled] = useState(true);
   const [open, setOpen] = useState(false);
-
   const { theme, toggleTheme } = useTheme();
+  const { pathname } = useLocation();
 
-  // useEffect(() => {
-  //   const onScroll = () => setScrolled(window.scrollY > 24);
-  //   onScroll();
-  //   window.addEventListener("scroll", onScroll);
-  //   return () => window.removeEventListener("scroll", onScroll);
-  // }, []);
+  const isHome = pathname === "/";
+  const overDarkHero = isHome && !scrolled;
+
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 24);
+    onScroll();
+    window.addEventListener("scroll", onScroll);
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
 
   useEffect(() => {
     document.body.style.overflow = open ? "hidden" : "";
@@ -38,11 +40,11 @@ const Navbar = () => {
 
   return (
     <header
-      className={`fixed inset-x-0 top-0 z-50 transition-all duration-500 ease-smooth 
+      className={`fixed inset-x-0 top-0 z-50 transition-all duration-500 ease-smooth
         ${
-          scrolled
-            ? "bg-cream/80 shadow-soft backdrop-blur-xl dark:bg-espresso-dark/80"
-            : "bg-transparent"
+          overDarkHero
+            ? "bg-transparent"
+            : "bg-cream/90 shadow-soft backdrop-blur-xl dark:bg-espresso-dark/90"
         }
     `}
     >
@@ -56,11 +58,13 @@ const Navbar = () => {
             className="flex h-10 w-10 items-center justify-center rounded-full bg-espresso text-gold 
           shadow-soft transition-transform duration-300 group-hover:rotate-12 dark:bg-gold dark:text-espresso-dark"
           >
-            <CoffeeIcon size={18} />
+            <Coffee size={18} />
           </span>
           <span
             className={`font-display text-xl font-semibold tracking-wide transition-colors ${
-              scrolled || open ? "text-espresso dark:text-cream" : "text-cream"
+              overDarkHero || open
+                ? "text-cream"
+                : "text-espresso dark:text-cream"
             }`}
           >
             Linn Caf&eacute;
@@ -77,13 +81,13 @@ const Navbar = () => {
                 `relative font-body text-sm font-medium tracking-wide transition-colors duration-300 after:absolute after:-bottom-1.5 after:left-0 after:h-0.5 after:bg-gold after:transition-all after:duration-300 hover:after:w-full ${
                   isActive ? "after:w-full" : "after:w-0"
                 } ${
-                  scrolled
+                  overDarkHero
                     ? isActive
                       ? "text-gold"
-                      : "text-espresso hover:text-gold dark:text-cream"
+                      : "text-cream hover:text-gold-light"
                     : isActive
                       ? "text-gold"
-                      : "text-cream hover:text-gold-light"
+                      : "text-espresso hover:text-gold dark:text-cream"
                 }`
               }
             >
@@ -97,9 +101,9 @@ const Navbar = () => {
             onClick={toggleTheme}
             aria-label="Toggle dark mode"
             className={`flex h-10 w-10 items-center justify-center rounded-full border transition-all duration-300 ${
-              scrolled
-                ? "border-espresso/15 text-espresso hover:border-gold hover:text-gold dark:border-cream/20 dark:text-center"
-                : "border-cream/30 text-cream hover:border-gold-light hover:text-gold-light"
+              overDarkHero
+                ? "border-cream/30 text-cream hover:border-gold-light hover:text-gold-light"
+                : "border-espresso/15 text-espresso hover:border-gold hover:text-gold dark:border-cream/20 dark:text-cream"
             }`}
           >
             <AnimatePresence mode="wait" initial={false}>
@@ -129,9 +133,9 @@ const Navbar = () => {
             onClick={toggleTheme}
             aria-label="Toogle dark mode"
             className={`flex h-10 w-10 items-center justify-center rounded-full border transition-colors ${
-              scrolled || open
-                ? "border-espresso/15 text-espresso dark:border-cream/20 dark:text-cream"
-                : "border-cream/30 text-cream"
+              overDarkHero || open
+                ? "border-cream/30 text-cream"
+                : "border-espresso/15 text-espresso dark:border-cream/20 dark:text-cream"
             }`}
           >
             {theme === "dark" ? <Sun size={16} /> : <Moon size={16} />}
@@ -142,7 +146,9 @@ const Navbar = () => {
             aria-label="Toogle navigation menu"
             aria-expanded={open}
             className={`relative flex h-10 w-10 items-center justify-center rounded-full transition-colors ${
-              scrolled || open ? "text-espresso dark:text-cream" : "text-cream"
+              overDarkHero || open
+                ? "text-cream "
+                : "text-espresso dark:text-cream"
             }`}
           >
             <AnimatePresence mode="wait" initial={false}>

@@ -11,10 +11,6 @@ const LINKS = [
   { to: "/contact", label: "Contact" },
 ];
 
-const SOCIAL_LINKS = [
-  { id: 1, href: "#", src: "/instagram.svg", alt: "Instagram" },
-  { id: 2, href: "#", src: "/facebook.svg", alt: "Facebook" },
-];
 const Footer = () => {
   return (
     <footer className="relative overflow-hidden bg-espresso-dark text-cream">
