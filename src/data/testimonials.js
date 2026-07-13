@@ -1,7 +1,7 @@
 export const testimonials = [
   {
     id: 1,
-    name: "Linn",
+    name: "Ms. May",
     role: "Regular Guest",
     quote:
       "Linn Cafe has the most consistent espresso I have found in the city. The space feels calm even during the morning rush.",
@@ -11,7 +11,7 @@ export const testimonials = [
   },
   {
     id: 2,
-    name: "Aung Gyi",
+    name: "Linn",
     role: "Food Blogger",
     quote:
       "The cold brew is smooth with zero bitterness, and the pastry case rotates often enough to keep things exciting.",
@@ -21,7 +21,7 @@ export const testimonials = [
   },
   {
     id: 3,
-    name: "Linn Mratt",
+    name: "May Thet",
     role: "Remote Designer",
     quote:
       "My go-to spot to work from. Great wifi, warm lighting, and the baristas remember my order every time.",
@@ -32,7 +32,7 @@ export const testimonials = [
   {
     id: 4,
     name: "Mratt Swe",
-    role: "Local Roaster Partner",
+    role: "Roaster Partner",
     quote:
       "It is rare to find a cafe this dedicated to sourcing. Every bean has a story and they actually tell it to you.",
     rating: 5,

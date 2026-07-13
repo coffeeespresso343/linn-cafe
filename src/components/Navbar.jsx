@@ -1,5 +1,5 @@
 import { AnimatePresence, motion } from "framer-motion";
-import { Coffee, Menu, Moon, Sun, X } from "lucide-react";
+import { Coffee, CoffeeIcon, Menu, Moon, Sun, X } from "lucide-react";
 import React from "react";
 import { useState } from "react";
 import { NavLink } from "react-router-dom";
@@ -17,17 +17,17 @@ const LINKS = [
 ];
 
 const Navbar = () => {
-  const [scrolled, setScrolled] = useState(false);
+  const [scrolled, setScrolled] = useState(true);
   const [open, setOpen] = useState(false);
 
   const { theme, toggleTheme } = useTheme();
 
-  useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 24);
-    onScroll();
-    window.addEventListener("scroll", onScroll);
-    return () => window.removeEventListener("scroll", onScroll);
-  }, []);
+  // useEffect(() => {
+  //   const onScroll = () => setScrolled(window.scrollY > 24);
+  //   onScroll();
+  //   window.addEventListener("scroll", onScroll);
+  //   return () => window.removeEventListener("scroll", onScroll);
+  // }, []);
 
   useEffect(() => {
     document.body.style.overflow = open ? "hidden" : "";
@@ -56,7 +56,7 @@ const Navbar = () => {
             className="flex h-10 w-10 items-center justify-center rounded-full bg-espresso text-gold 
           shadow-soft transition-transform duration-300 group-hover:rotate-12 dark:bg-gold dark:text-espresso-dark"
           >
-            <Coffee size={18} />
+            <CoffeeIcon size={18} />
           </span>
           <span
             className={`font-display text-xl font-semibold tracking-wide transition-colors ${
@@ -171,6 +171,60 @@ const Navbar = () => {
             className="fixed inset-0 top-20 z-40 bg-espresso/40 backdrop-blur-sm lg:hidden"
             onClick={() => setOpen(false)}
           />
+        )}
+      </AnimatePresence>
+
+      <AnimatePresence>
+        {open && (
+          <motion.div
+            initial={{ x: "100%" }}
+            animate={{ x: 0 }}
+            exit={{ x: "100%" }}
+            transition={{
+              type: "tween",
+              duration: 0.4,
+              ease: [0.22, 1, 0.36, 1],
+            }}
+            className="fixed right-0 top-20 z-50 flex h-[calc(100vh-5rem)] w-[80%] max-w-sm flex-col gap-2 bg-cream px-8 py-10 shadow-soft-lg dark:bg-espresso-dark lg:hidden"
+          >
+            {LINKS.map((link, i) => (
+              <motion.div
+                key={link.to}
+                initial={{ opacity: 0, x: 30 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ delay: 0.08 * i, duration: 0.4 }}
+              >
+                <NavLink
+                  to={link.to}
+                  end={link.to === "/"}
+                  onClick={() => setOpen(false)}
+                  className={({ isActive }) =>
+                    `block border-b border-latte/40 py-4 font-display text-2xl transition-colors dark:border-white/10 ${
+                      isActive ? "text-gold" : "text-espresso dark:text-cream"
+                    }`
+                  }
+                >
+                  {link.label}
+                </NavLink>
+              </motion.div>
+            ))}
+
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.5, duration: 0.4 }}
+              className="mt-8"
+            >
+              <Button
+                to="/reservation"
+                variant="gold"
+                onClick={() => setOpen(false)}
+                className="w-full"
+              >
+                Reserve Table
+              </Button>
+            </motion.div>
+          </motion.div>
         )}
       </AnimatePresence>
     </header>
