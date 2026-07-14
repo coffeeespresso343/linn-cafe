@@ -3,6 +3,12 @@ import { Link } from "react-router-dom";
 import NewsletterForm from "./NewsletterForm";
 import Logo from "../assets/logo.png";
 
+const SOCIAL_ICONS = [
+  { alt: "Instagram", src: "/instagram.svg" },
+  { alt: "Facebook", src: "/facebook.svg" },
+  { alt: "X", src: "/x.png" },
+];
+
 const LINKS = [
   { to: "/", label: "Home" },
   { to: "/menu", label: "Menu" },
@@ -36,27 +42,20 @@ const Footer = () => {
               corner for slow mornings and good conversation.
             </p>
             <div className="mt-6 flex gap-3">
-              <a href="#">
-                <img
-                  src="/instagram.svg"
-                  alt="Instagram Logo"
-                  className="h-8 w-8 rounded-full object-cover ring-2 ring-gold/30 opacity-70 hover:opacity-90 hover:scale-110"
-                />
-              </a>
-              <a href="#">
-                <img
-                  src="/facebook.svg"
-                  alt="Facebook Logo"
-                  className="h-8 w-8 rounded-full object-cover ring-2 ring-gold/30 opacity-70 hover:opacity-90 hover:scale-110"
-                />
-              </a>
-              <a href="#">
-                <img
-                  src="/x.png"
-                  alt="X Logo"
-                  className="h-8 w-8 rounded-full object-cover ring-2 ring-gold/30 opacity-70 hover:opacity-90 hover:scale-110"
-                />
-              </a>
+              {SOCIAL_ICONS.map((icon, i) => (
+                <a
+                  key={i}
+                  href="/not-found"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <img
+                    src={icon.src}
+                    alt={icon.alt}
+                    className="h-8 w-8 rounded-full object-cover ring-2 ring-gold/30 hover:scale-110"
+                  />
+                </a>
+              ))}
             </div>
           </div>
 
@@ -134,7 +133,7 @@ const Footer = () => {
               />
             </a>
             <p className="text-latte/30">
-              Built with heart and too much coffee
+              &ldquo;Built with heart and too much coffee&rdquo;
             </p>
           </div>
         </div>

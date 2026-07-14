@@ -16,9 +16,12 @@ const NotFound = () => {
       <h1 className="font-display text-5xl font-bold text-espresso dark:text-cream sm:text-6xl">
         404
       </h1>
+      <h3 className="mt-1 font-display text-2xl font-bold text-espresso dark:text-cream sm:text-3xl">
+        This page is not available yet.
+      </h3>
+
       <p className="mt-3 max-w-sm font-body text-sm text-coffee/70 dark:text-latte/70">
-        Looks like this page got poured out. Let's get you back to something
-        warm.
+        Let's get you back to something warm.
       </p>
       <div className="mt-8">
         <Button to="/" variant="primary">

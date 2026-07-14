@@ -10,7 +10,7 @@ import {
   User,
   Users,
 } from "lucide-react";
-import { validateReservation } from "../utils/validators,js";
+import { validateReservation } from "../utils/validators.js";
 import Button from "../components/Button";
 import LoadingSpinner from "../components/LoadingSpinner";
 
