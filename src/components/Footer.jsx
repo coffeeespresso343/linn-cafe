@@ -79,7 +79,7 @@ const Footer = () => {
             <ul className="space-y-3 font-body text-sm text-latte/75">
               <li className="flex items-center gap-3">
                 <MapPin size={16} className="shrink-0 text-gold" />
-                <span>123 Pyay Road, Yangon, Myanmar</span>
+                <span>128 Pyay Road, Yangon, Myanmar</span>
               </li>
               <li className="flex items-center gap-3">
                 <Phone size={16} className="shrink-0 text-gold" />

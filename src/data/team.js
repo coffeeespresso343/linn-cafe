@@ -62,8 +62,8 @@ export const timeline = [
 ];
 
 export const stats = [
-  { id: 1, label: "Cups Served Daily", value: 100, suffix: "+" },
+  { id: 1, label: "Cups Served Daily", value: 128, suffix: "+" },
   { id: 2, label: "Beans Sourced Directly", value: 12, suffix: " Farms" },
   { id: 3, label: "Years Roasting", value: 1, suffix: "+" },
-  { id: 4, label: "Happy Regulars", value: 2555, suffix: "+" },
+  { id: 4, label: "Happy Regulars", value: 256, suffix: "+" },
 ];

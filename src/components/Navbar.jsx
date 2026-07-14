@@ -77,6 +77,7 @@ const Navbar = () => {
               key={link.to}
               to={link.to}
               end={link.to === "/"}
+              // onClick={() => window.scrollTo(0, 0)}
               className={({ isActive }) =>
                 `relative font-body text-sm font-medium tracking-wide transition-colors duration-300 after:absolute after:-bottom-1.5 after:left-0 after:h-0.5 after:bg-gold after:transition-all after:duration-300 hover:after:w-full ${
                   isActive ? "after:w-full" : "after:w-0"
