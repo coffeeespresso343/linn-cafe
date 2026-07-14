@@ -1,6 +1,7 @@
-import { Coffee, Mail, MapPin, Phone } from "lucide-react";
+import { Mail, MapPin, Phone } from "lucide-react";
 import { Link } from "react-router-dom";
 import NewsletterForm from "./NewsletterForm";
+import Logo from "../assets/logo.png";
 
 const LINKS = [
   { to: "/", label: "Home" },
@@ -18,9 +19,14 @@ const Footer = () => {
         <div className="grid grid-cols-1 gap-12 md:grid-cols-2 lg:grid-cols-4">
           <div>
             <Link to="/" className="mb-4 flex items-center gap-2">
-              <span className="flex h-10 w-10 items-center justify-center rounded-full bg-gold text-espresso-dark">
-                <Coffee size={18} />
-              </span>
+              <div className="flex h-10 w-10 items-center justify-center rounded-full text-espresso-dark">
+                {/* <Coffee size={18} /> */}
+                <img
+                  src={Logo}
+                  alt="Linn Cafe Logo"
+                  className="rounded-4xl h-9 w-9 object-cover"
+                />
+              </div>
               <span className="font-display text-xl font-semibold">
                 Linn Caf&eacute;
               </span>
@@ -107,19 +113,30 @@ const Footer = () => {
         </div>
 
         <div className="mt-14 flex flex-col items-center justify-between gap-4 border-t border-cream/10 pt-8 text-center font-body text-xs text-latte/50 sm:flex-row sm:text-left">
-          <div>
-            <p>
-              Developed by <span className="text-latte/70">Linn Khant</span>
-            </p>
-            <p className="text-latte/30">
-              Built with heart and too much coffee
-            </p>
-          </div>
+          <p>Crafted with care for coffee people, everywhere.</p>
           <p>
             &copy; {new Date().getFullYear()} Linn Cafe. All rights reserved.
           </p>
 
-          <p>Crafted with care for coffee people, everywhere.</p>
+          <div className="flex  flex-col gap-2 items-center">
+            <p>
+              Developed by <span className="text-latte/70">Linn Khant</span>
+            </p>
+            <a
+              href="https://github.com/coffeeespresso343"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <img
+                src="/github.webp"
+                alt="GitHub Logo"
+                className="h-6 w-6 object-cover rounded-4xl ring-2"
+              />
+            </a>
+            <p className="text-latte/30">
+              Built with heart and too much coffee
+            </p>
+          </div>
         </div>
       </div>
     </footer>

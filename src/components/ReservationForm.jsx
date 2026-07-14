@@ -2,6 +2,7 @@ import { useState } from "react";
 import { motion } from "framer-motion";
 import {
   Calendar,
+  ChevronDown,
   Clock,
   Mail,
   MessageSquare,
@@ -136,13 +137,19 @@ const ReservationForm = () => {
             onChange={handleChange}
             className={`input-base appearance-none pl-11 ${errors.guests ? "border-red-400" : ""}`}
           >
-            <option value="">Select guests</option>
+            <option value="" className="dark:bg-espresso-dark">
+              Select guests
+            </option>
             {[1, 2, 3, 4, 5, 6, 7, 8].map((n) => (
-              <option key={n} value={n}>
+              <option key={n} value={n} className="dark:bg-espresso-dark">
                 {n} {n === 1 ? "Guest" : "Guests"}
               </option>
             ))}
           </select>
+          <ChevronDown
+            size={18}
+            className="pointer-events-none absolute right-4 top-1/2 -translate-y-1/2 text-coffee/40 dark:text-latte/40"
+          />
         </div>
         {errors.guests && (
           <p className="mt-1.5 font-body text-xs text-red-500">
@@ -187,9 +194,9 @@ const ReservationForm = () => {
           disabled={isSubmitting}
         >
           {isSubmitting ? (
-            <>
+            <div className="flex items-center gap-2">
               <LoadingSpinner size={16} /> Reserving...
-            </>
+            </div>
           ) : (
             "Confirm Reservation"
           )}

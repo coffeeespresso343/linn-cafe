@@ -1,3 +1,6 @@
+import avatar from "../assets/avatar-light.png";
+import avatar2 from "../assets/avatar-dark.png";
+
 export const testimonials = [
   {
     id: 1,
@@ -16,8 +19,7 @@ export const testimonials = [
     quote:
       "The cold brew is smooth with zero bitterness, and the pastry case rotates often enough to keep things exciting.",
     rating: 5,
-    avatar:
-      "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?q=80&w=200&auto=format&fit=crop",
+    avatar: avatar,
   },
   {
     id: 3,
@@ -26,8 +28,7 @@ export const testimonials = [
     quote:
       "My go-to spot to work from. Great wifi, warm lighting, and the baristas remember my order every time.",
     rating: 5,
-    avatar:
-      "https://images.unsplash.com/photo-1544005313-94ddf0286df2?q=80&w=200&auto=format&fit=crop",
+    avatar: avatar2,
   },
   {
     id: 4,

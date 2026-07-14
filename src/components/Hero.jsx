@@ -84,7 +84,7 @@ const Hero = () => {
           className="mt-16 grid grid-cols-3 gap-8 border-t border-cream/10 pt-8 sm:gap-14"
         >
           {[
-            ["11+", "Years Roasting"],
+            ["1+", "Year Roasting"],
             ["850+", "Cups Daily"],
             ["12", "Partner Farms"],
           ].map(([value, label]) => (

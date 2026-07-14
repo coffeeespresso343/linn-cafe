@@ -92,7 +92,7 @@ const Home = () => {
                 src="https://images.unsplash.com/photo-1442512595331-e89e73853f31?q=80&w=1000&auto=format&fit=crop"
                 alt="Barista preparing coffee at Linn Cafe"
                 loading="lazy"
-                className="h-105 w-full object-cover sm:h-225"
+                className="max-h-screen w-full object-cover sm:h-225"
               />
             </div>
             <div className="absolute -bottom-8 -right-6 hidden w-52 rounded-2xl border border-latte/50 bg-cream/95 p-5 shadow-soft-lg backdrop-blur-xl dark:border-white/10 dark:bg-espresso/95 sm:block">
@@ -154,7 +154,7 @@ const Home = () => {
                 </motion.div>
               ))}
             </motion.div>
-            <div className="mt-8">
+            <div className="mt-12 flex justify-center">
               <Button to="/about" variant="primary" icon={ArrowRight}>
                 View Full Story
               </Button>

@@ -1,19 +1,23 @@
+import avatar from "../assets/avatar.jpg";
+import avatar2 from "../assets/avatar-light.png";
+import avatar3 from "../assets/avatar-dark.png";
+
 export const team = [
   {
     id: 1,
-    name: "Elena Marsh",
+    name: "Linn Khant",
     role: "Founder & Head Roaster",
     bio: "Fifteen years behind the roaster, obsessed with single-origin beans and consistency.",
-    image:
-      "https://images.unsplash.com/photo-1580489944761-15a19d654956?q=80&w=600&auto=format&fit=crop",
+    image: avatar,
+    // "https://images.unsplash.com/photo-1580489944761-15a19d654956?q=80&w=600&auto=format&fit=crop",
   },
   {
     id: 2,
     name: "Jonah Reyes",
     role: "Head Barista",
     bio: "Regional latte-art finalist who trains every new barista on our bar standards.",
-    image:
-      "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=600&auto=format&fit=crop",
+    image: avatar3,
+    // "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=600&auto=format&fit=crop",
   },
   {
     id: 3,
@@ -28,8 +32,7 @@ export const team = [
     name: "Theo Brandt",
     role: "Coffee Sourcing Lead",
     bio: "Travels twice a year to build direct relationships with our partner farms.",
-    image:
-      "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?q=80&w=600&auto=format&fit=crop",
+    image: avatar2,
   },
 ];
 
@@ -64,6 +67,6 @@ export const timeline = [
 export const stats = [
   { id: 1, label: "Cups Served Daily", value: 128, suffix: "+" },
   { id: 2, label: "Beans Sourced Directly", value: 12, suffix: " Farms" },
-  { id: 3, label: "Years Roasting", value: 1, suffix: "+" },
+  { id: 3, label: "Year Roasting", value: 1, suffix: "+" },
   { id: 4, label: "Happy Regulars", value: 256, suffix: "+" },
 ];

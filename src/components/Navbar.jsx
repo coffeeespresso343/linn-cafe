@@ -1,10 +1,11 @@
 import { AnimatePresence, motion } from "framer-motion";
-import { Coffee, Menu, Moon, Sun, X } from "lucide-react";
+import { Menu, Moon, Sun, X } from "lucide-react";
 import { useState } from "react";
 import { NavLink, useLocation } from "react-router-dom";
 import { useTheme } from "../context/ThemeContext";
 import { useEffect } from "react";
 import Button from "./Button";
+import Logo from "../assets/logo.png";
 
 const LINKS = [
   { to: "/", label: "Home" },
@@ -44,7 +45,7 @@ const Navbar = () => {
         ${
           overDarkHero
             ? "bg-transparent"
-            : "bg-cream/90 shadow-soft backdrop-blur-xl dark:bg-espresso-dark/90"
+            : "bg-white/5 shadow-soft backdrop-blur-2xl dark:bg-black/5"
         }
     `}
     >
@@ -55,10 +56,14 @@ const Navbar = () => {
           onClick={() => setOpen(false)}
         >
           <span
-            className="flex h-10 w-10 items-center justify-center rounded-full bg-espresso text-gold 
-          shadow-soft transition-transform duration-300 group-hover:rotate-12 dark:bg-gold dark:text-espresso-dark"
+            className="flex h-10 w-10 items-center justify-center rounded-full bg-espresso
+          shadow-soft transition-transform duration-300 group-hover:rotate-12 "
           >
-            <Coffee size={18} />
+            <img
+              src={Logo}
+              alt="Linn Cafe Logo"
+              className="rounded-4xl h-9 w-9 object-cover"
+            />
           </span>
           <span
             className={`font-display text-xl font-semibold tracking-wide transition-colors ${
@@ -77,7 +82,6 @@ const Navbar = () => {
               key={link.to}
               to={link.to}
               end={link.to === "/"}
-              // onClick={() => window.scrollTo(0, 0)}
               className={({ isActive }) =>
                 `relative font-body text-sm font-medium tracking-wide transition-colors duration-300 after:absolute after:-bottom-1.5 after:left-0 after:h-0.5 after:bg-gold after:transition-all after:duration-300 hover:after:w-full ${
                   isActive ? "after:w-full" : "after:w-0"
@@ -181,6 +185,7 @@ const Navbar = () => {
         )}
       </AnimatePresence>
 
+      {/* Hamburgar Menu */}
       <AnimatePresence>
         {open && (
           <motion.div
@@ -192,7 +197,7 @@ const Navbar = () => {
               duration: 0.4,
               ease: [0.22, 1, 0.36, 1],
             }}
-            className="fixed right-0 top-20 z-50 flex h-[calc(100vh-5rem)] w-[80%] max-w-sm flex-col gap-2 bg-cream px-8 py-10 shadow-soft-lg dark:bg-espresso-dark lg:hidden"
+            className="fixed right-0 top-20 z-50 rounded-bl-4xl flex h-[calc(100vh-5rem)] w-[60%] max-w-sm flex-col gap-2 bg-cream/95 px-8 py-4 shadow-soft-lg dark:bg-espresso-dark/95 lg:hidden"
           >
             {LINKS.map((link, i) => (
               <motion.div
@@ -206,7 +211,7 @@ const Navbar = () => {
                   end={link.to === "/"}
                   onClick={() => setOpen(false)}
                   className={({ isActive }) =>
-                    `block border-b border-latte/40 py-4 font-display text-2xl transition-colors dark:border-white/10 ${
+                    `block border-b border-latte/80 py-3 font-display text-xl transition-colors dark:border-white/20 ${
                       isActive ? "text-gold" : "text-espresso dark:text-cream"
                     }`
                   }
