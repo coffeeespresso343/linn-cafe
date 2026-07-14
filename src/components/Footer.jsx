@@ -38,7 +38,7 @@ const Footer = () => {
               </span>
             </Link>
             <p className="max-w-xs font-body text-sm leading-relaxed text-latte/70">
-              Small-batch, freshly roasted coffee crafted with care - a wram
+              Small-batch, freshly roasted coffee crafted with care - a warm
               corner for slow mornings and good conversation.
             </p>
             <div className="mt-6 flex gap-3">

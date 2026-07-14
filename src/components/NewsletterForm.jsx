@@ -1,6 +1,7 @@
 import { Send } from "lucide-react";
-import React, { useState } from "react";
 import LoadingSpinner from "./LoadingSpinner";
+import { isValidEmail } from "../utils/validators";
+import { useState } from "react";
 
 const NewsletterForm = ({ compact = false }) => {
   const [email, setEmail] = useState("");
@@ -10,9 +11,19 @@ const NewsletterForm = ({ compact = false }) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    setEmail("TO-DO");
-    setError("to-do");
+    if (!isValidEmail(email)) {
+      setError("Enter a valid email address.");
+      return;
+    }
+
+    setError("");
+    setSubmitting(true);
+    await new Promise((res) => setTimeout(res, 900));
+    setSubmitting(false);
+    // Toast Later
+    setEmail("");
   };
+
   return (
     <form
       onSubmit={handleSubmit}

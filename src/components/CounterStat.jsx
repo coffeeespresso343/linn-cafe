@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import useCountUp from "../hooks/useCountUp";
+import { useCountUp } from "../hooks/useCountUp";
 
 const CounterStat = ({ value, suffix = "", label, index = 0 }) => {
   const { ref, value: current } = useCountUp(value);

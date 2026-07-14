@@ -5,11 +5,33 @@ import { useState, useEffect, useMemo } from "react";
 import { categories, menuItems } from "../data/menuData";
 import MenuCard from "../components/MenuCard";
 import SkeletonCard from "../components/SkeletonCard";
+import { useDebounce } from "react-use";
+import { useRef } from "react";
 
 const Menu = () => {
   const [query, setQuery] = useState("");
+  const [debouncedQuery, setDebouncedQuery] = useState("");
   const [activeCategory, setActiveCategory] = useState("All");
   const [isLoading, setIsLoading] = useState(true);
+
+  const resultRef = useRef(null);
+
+  useEffect(() => {
+    if (!debouncedQuery.trim()) return;
+
+    resultRef.current?.scrollIntoView({
+      behavior: "smooth",
+      block: "start",
+    });
+  }, [debouncedQuery]);
+
+  useDebounce(
+    () => {
+      setDebouncedQuery(query);
+    },
+    800,
+    [query],
+  );
 
   useEffect(() => {
     const t = window.setTimeout(() => setIsLoading(false), 600);
@@ -22,11 +44,23 @@ const Menu = () => {
       const matchesCategory =
         activeCategory === "All" || item.category === activeCategory;
       const matchesQuery =
-        item.name.toLowerCase().includes(query.toLowerCase()) ||
-        item.description.toLowerCase().includes(query.toLowerCase);
+        item.name.toLowerCase().includes(debouncedQuery.toLowerCase()) ||
+        item.description.toLowerCase().includes(debouncedQuery.toLowerCase());
       return matchesCategory && matchesQuery;
     });
-  }, [query, activeCategory]);
+  }, [debouncedQuery, activeCategory]);
+
+  const handleCategoryChange = (cat) => {
+    setActiveCategory(cat);
+    setQuery("");
+
+    requestAnimationFrame(() => {
+      resultRef.current?.scrollIntoView({
+        behavior: "smooth",
+        block: "start",
+      });
+    });
+  };
 
   return (
     <div className="pb-24 pt-36">
@@ -58,7 +92,9 @@ const Menu = () => {
           {categories.map((cat) => (
             <button
               key={cat}
-              onClick={() => setActiveCategory(cat)}
+              onClick={() => {
+                handleCategoryChange(cat);
+              }}
               className={`rounded-full border px-4 py-2 font-body text-xs font-medium uppercase tracking-wide transition-all duration-300 sm:text-sm ${
                 activeCategory == cat
                   ? "border-gold bg-gold text-espresso shadow-soft"
@@ -70,40 +106,42 @@ const Menu = () => {
           ))}
         </div>
 
-        {isLoading ? (
-          <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
-            {Array.from({ length: 6 }).map((_, i) => (
-              <SkeletonCard key={i} />
-            ))}
-          </div>
-        ) : filtered.length > 0 ? (
-          <motion.div
-            layout
-            className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3"
-          >
-            <AnimatePresence mode="popLayout">
-              {filtered.map((item, i) => (
-                <MenuCard key={item.id} item={item} index={i} />
+        <div ref={resultRef} className="scroll-mt-105 sm:scroll-mt-68">
+          {isLoading ? (
+            <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+              {Array.from({ length: 6 }).map((_, i) => (
+                <SkeletonCard key={i} />
               ))}
-            </AnimatePresence>
-          </motion.div>
-        ) : (
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            className="flex flex-col items-center gap-4 py-20 text-center"
-          >
-            <span className="flex h-16 w-16 items-center justify-center rounded-full bg-latte/40 text-coffee/50 dark:bg-white/5 dark:text-latte/50">
-              <Coffee size={26} />
-            </span>
-            <p className="font-display text-xl text-espresso dark:text-cream">
-              No items match with "{query}"
-            </p>
-            <p className="font-body text-sm text-coffee/60 dark:text-latte/60">
-              Try a different keyword or browse another category.
-            </p>
-          </motion.div>
-        )}
+            </div>
+          ) : filtered.length > 0 ? (
+            <motion.div
+              layout
+              className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3"
+            >
+              <AnimatePresence mode="popLayout">
+                {filtered.map((item, i) => (
+                  <MenuCard key={item.id} item={item} index={i} />
+                ))}
+              </AnimatePresence>
+            </motion.div>
+          ) : (
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              className="card-surface flex flex-col items-center gap-4 py-20 text-center"
+            >
+              <span className="flex h-16 w-16 items-center justify-center rounded-full bg-latte/40 text-coffee/50 dark:bg-white/5 dark:text-latte/50">
+                <Coffee size={26} />
+              </span>
+              <p className="font-display text-xl text-espresso dark:text-cream">
+                No items match with "{query}"
+              </p>
+              <p className="font-body text-sm text-coffee/60 dark:text-latte/60">
+                Try a different keyword or browse another category.
+              </p>
+            </motion.div>
+          )}
+        </div>
       </section>
     </div>
   );

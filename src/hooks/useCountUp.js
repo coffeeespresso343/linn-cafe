@@ -3,7 +3,7 @@ import { useEffect } from "react";
 import { useState } from "react";
 import { useRef } from "react";
 
-export default function useCountUp(target, duration = 1800) {
+export function useCountUp(target, duration = 1800) {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-80px" });
   const [value, setValue] = useState(0);

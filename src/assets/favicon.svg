@@ -1,0 +1,34 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <!-- Background -->
+  <circle cx="32" cy="32" r="30" fill="#3E2723"/>
+  <circle cx="32" cy="32" r="27" fill="none" stroke="#C89B3C" stroke-width="2"/>
+
+  <!-- Steam -->
+  <path d="M27 18c-2-3 2-5 0-8"
+        stroke="#C89B3C"
+        stroke-width="2"
+        stroke-linecap="round"
+        fill="none"/>
+  <path d="M37 18c2-3-2-5 0-8"
+        stroke="#C89B3C"
+        stroke-width="2"
+        stroke-linecap="round"
+        fill="none"/>
+
+  <!-- Cup -->
+  <ellipse cx="32" cy="27" rx="9" ry="2.5" fill="#F8F5F2"/>
+  <path d="M23 27L25 37C26 40 38 40 39 37L41 27Z" fill="#F8F5F2"/>
+
+  <!-- Coffee -->
+  <ellipse cx="32" cy="27" rx="7" ry="1.4" fill="#5D4037"/>
+
+  <!-- Handle -->
+  <path d="M41 29c5 0 5 8 0 8"
+        stroke="#F8F5F2"
+        stroke-width="2"
+        fill="none"
+        stroke-linecap="round"/>
+
+  <!-- Saucer -->
+  <ellipse cx="32" cy="42" rx="12" ry="2" fill="#C89B3C"/>
+</svg>
