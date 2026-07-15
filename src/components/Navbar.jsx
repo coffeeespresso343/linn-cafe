@@ -1,9 +1,8 @@
 import { AnimatePresence, motion } from "framer-motion";
 import { Menu, Moon, Sun, X } from "lucide-react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { NavLink, useLocation } from "react-router-dom";
 import { useTheme } from "../context/ThemeContext";
-import { useEffect } from "react";
 import Button from "./Button";
 import Logo from "../assets/logo.png";
 
@@ -17,7 +16,7 @@ const LINKS = [
 ];
 
 const Navbar = () => {
-  const [scrolled, setScrolled] = useState(true);
+  const [scrolled, setScrolled] = useState(() => window.scrollY > 24);
   const [open, setOpen] = useState(false);
   const { theme, toggleTheme } = useTheme();
   const { pathname } = useLocation();
@@ -33,19 +32,35 @@ const Navbar = () => {
   }, []);
 
   useEffect(() => {
+    const handleKeyDown = (e) => {
+      if (e.key === "Escape") {
+        setOpen(false);
+      }
+    };
+
+    window.addEventListener("keydown", handleKeyDown);
+
+    return () => {
+      window.removeEventListener("keydown", handleKeyDown);
+    };
+  }, []);
+
+  useEffect(() => {
     document.body.style.overflow = open ? "hidden" : "";
+    document.documentElement.style.overflow = open ? "hidden" : "";
     return () => {
       document.body.style.overflow = "";
+      document.documentElement.style.overflow = "";
     };
   }, [open]);
 
   return (
     <header
-      className={`fixed inset-x-0 top-0 z-50 transition-all duration-500 ease-smooth
+      className={`fixed inset-x-0 top-0 z-50 transition-[background-color, backdrop-filter, box-shadow] duration-500 ease-smooth
         ${
           overDarkHero
             ? "bg-transparent"
-            : "bg-white/5 shadow-soft backdrop-blur-2xl dark:bg-black/5"
+            : "bg-white/70 shadow-soft backdrop-blur-xl dark:bg-black/60"
         }
     `}
     >
@@ -56,20 +71,18 @@ const Navbar = () => {
           onClick={() => setOpen(false)}
         >
           <span
-            className="flex h-10 w-10 items-center justify-center rounded-full bg-espresso
+            className="flex h-10 w-10 items-center justify-center rounded-4xl bg-espresso
           shadow-soft transition-transform duration-300 group-hover:rotate-12 "
           >
             <img
               src={Logo}
               alt="Linn Cafe Logo"
-              className="rounded-4xl h-9 w-9 object-cover"
+              className="rounded-full h-9 w-9 object-cover"
             />
           </span>
           <span
             className={`font-display text-xl font-semibold tracking-wide transition-colors ${
-              overDarkHero || open
-                ? "text-cream"
-                : "text-espresso dark:text-cream"
+              overDarkHero ? "text-cream" : "text-espresso dark:text-cream"
             }`}
           >
             Linn Caf&eacute;
@@ -103,6 +116,7 @@ const Navbar = () => {
 
         <div className="hidden items-center gap-4 lg:flex">
           <button
+            type="button"
             onClick={toggleTheme}
             aria-label="Toggle dark mode"
             className={`flex h-10 w-10 items-center justify-center rounded-full border transition-all duration-300 ${
@@ -135,8 +149,9 @@ const Navbar = () => {
 
         <div className="flex items-center gap-3 lg:hidden">
           <button
+            type="button"
             onClick={toggleTheme}
-            aria-label="Toogle dark mode"
+            aria-label="Toggle dark mode"
             className={`flex h-10 w-10 items-center justify-center rounded-full border transition-colors ${
               overDarkHero || open
                 ? "border-cream/30 text-cream"
@@ -148,12 +163,10 @@ const Navbar = () => {
 
           <button
             onClick={() => setOpen((o) => !o)}
-            aria-label="Toogle navigation menu"
+            aria-label="Toggle navigation menu"
             aria-expanded={open}
             className={`relative flex h-10 w-10 items-center justify-center rounded-full transition-colors ${
-              overDarkHero || open
-                ? "text-cream "
-                : "text-espresso dark:text-cream"
+              overDarkHero ? "text-cream " : "text-espresso dark:text-cream"
             }`}
           >
             <AnimatePresence mode="wait" initial={false}>
@@ -191,13 +204,13 @@ const Navbar = () => {
           <motion.div
             initial={{ x: "100%" }}
             animate={{ x: 0 }}
-            exit={{ x: "100%" }}
+            exit={{ opacity: 0, x: "100%" }}
             transition={{
               type: "tween",
               duration: 0.4,
               ease: [0.22, 1, 0.36, 1],
             }}
-            className="fixed right-0 top-20 z-50 rounded-bl-4xl flex h-[calc(100vh-5rem)] w-[60%] max-w-sm flex-col gap-2 bg-cream/95 px-8 py-4 shadow-soft-lg dark:bg-espresso-dark/95 lg:hidden"
+            className="fixed right-0 top-20 z-60 rounded-bl-4xl flex h-[calc(100vh-5rem)] w-[80%] max-w-sm flex-col gap-2 bg-cream/95 px-8 py-4 shadow-soft-lg dark:bg-espresso-dark/95 lg:hidden"
           >
             {LINKS.map((link, i) => (
               <motion.div

@@ -11,7 +11,7 @@ const info = [
 
 const Reservation = () => {
   return (
-    <div className="pb-24 pt-36">
+    <div className=" pb-24 pt-36">
       <section className="container-page grid grid-cols-1 gap-14 lg:grid-cols-[0.9fr_1.1fr]">
         <div>
           <SectionTitle
