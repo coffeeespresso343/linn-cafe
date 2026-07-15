@@ -3,6 +3,7 @@ import SectionTitle from "../components/SectionTitle";
 import { motion } from "framer-motion";
 import FaqAccordion from "../components/FaqAccordion";
 import { faqs } from "../data/faqs";
+import ContactForm from "../components/ContactForm";
 
 const SOCIAL_ICONS = [
   { alt: "Instagram", src: "/instagram.svg" },
@@ -90,6 +91,7 @@ const Contact = () => {
               />
             </motion.div>
           </div>
+          <ContactForm />
         </div>
       </section>
 

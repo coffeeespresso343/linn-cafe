@@ -86,7 +86,7 @@ const ReservationForm = () => {
             type={type}
             value={values[name]}
             onChange={handleChange}
-            className={`input-base ${Icon ? "pl-11" : ""} ${errors[name] ? "border-red-400 focus:border-red-400 focus:ring-red-100" : ""}`}
+            className={`input-base min-w-0 ${Icon ? "pl-11" : ""} ${errors[name] ? "border-red-400 focus:border-red-400 focus:ring-red-100" : ""}`}
             {...extra}
           />
         </div>
@@ -135,7 +135,7 @@ const ReservationForm = () => {
             id="guests"
             value={values.guests}
             onChange={handleChange}
-            className={`input-base appearance-none pl-11 ${errors.guests ? "border-red-400" : ""}`}
+            className={`input-base min-w-0 appearance-none pl-11 ${errors.guests ? "border-red-400" : ""}`}
           >
             <option value="" className="dark:bg-espresso-dark">
               Select guests
@@ -169,7 +169,7 @@ const ReservationForm = () => {
           Special Request{" "}
           <span className="normal-case text-coffee/40">(optional)</span>
         </label>
-        <div className="relative">
+        <div className="relative min-w-0">
           <MessageSquare
             size={16}
             className="pointer-events-none absolute left-4 top-4 text-coffee/40 dark:text-latte/40"
