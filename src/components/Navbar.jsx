@@ -153,7 +153,7 @@ const Navbar = () => {
             onClick={toggleTheme}
             aria-label="Toggle dark mode"
             className={`flex h-10 w-10 items-center justify-center rounded-full border transition-colors ${
-              overDarkHero || open
+              overDarkHero
                 ? "border-cream/30 text-cream"
                 : "border-espresso/15 text-espresso dark:border-cream/20 dark:text-cream"
             }`}
@@ -193,7 +193,9 @@ const Navbar = () => {
             exit={{ opacity: 0 }}
             transition={{ duration: 0.3 }}
             className="fixed inset-0 top-20 z-40 bg-espresso/40 backdrop-blur-sm lg:hidden"
-            onClick={() => setOpen(false)}
+            onClick={() => {
+              setOpen(false);
+            }}
           />
         )}
       </AnimatePresence>
@@ -201,55 +203,57 @@ const Navbar = () => {
       {/* Hamburgar Menu */}
       <AnimatePresence>
         {open && (
-          <motion.div
-            initial={{ x: "100%" }}
-            animate={{ x: 0 }}
-            exit={{ opacity: 0, x: "100%" }}
-            transition={{
-              type: "tween",
-              duration: 0.4,
-              ease: [0.22, 1, 0.36, 1],
-            }}
-            className="fixed right-0 top-20 z-60 rounded-bl-4xl flex h-[calc(100vh-5rem)] w-[80%] max-w-sm flex-col gap-2 bg-cream/95 px-8 py-4 shadow-soft-lg dark:bg-espresso-dark/95 lg:hidden"
-          >
-            {LINKS.map((link, i) => (
-              <motion.div
-                key={link.to}
-                initial={{ opacity: 0, x: 30 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ delay: 0.08 * i, duration: 0.4 }}
-              >
-                <NavLink
-                  to={link.to}
-                  end={link.to === "/"}
-                  onClick={() => setOpen(false)}
-                  className={({ isActive }) =>
-                    `block border-b border-latte/80 py-3 font-display text-xl transition-colors dark:border-white/20 ${
-                      isActive ? "text-gold" : "text-espresso dark:text-cream"
-                    }`
-                  }
-                >
-                  {link.label}
-                </NavLink>
-              </motion.div>
-            ))}
-
+          <>
             <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.5, duration: 0.4 }}
-              className="mt-8"
+              initial={{ x: "100%" }}
+              animate={{ x: 0 }}
+              exit={{ opacity: 0, x: "100%" }}
+              transition={{
+                type: "tween",
+                duration: 0.4,
+                ease: [0.22, 1, 0.36, 1],
+              }}
+              className="fixed right-0 top-20 z-60 rounded-bl-4xl flex h-[calc(100vh-5rem)] w-[80%] max-w-sm flex-col gap-2 bg-cream/95 px-8 py-4 shadow-soft-lg dark:bg-espresso-dark/95 lg:hidden"
             >
-              <Button
-                to="/reservation"
-                variant="gold"
-                onClick={() => setOpen(false)}
-                className="w-full"
+              {LINKS.map((link, i) => (
+                <motion.div
+                  key={link.to}
+                  initial={{ opacity: 0, x: 30 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ delay: 0.08 * i, duration: 0.4 }}
+                >
+                  <NavLink
+                    to={link.to}
+                    end={link.to === "/"}
+                    onClick={() => setOpen(false)}
+                    className={({ isActive }) =>
+                      `block border-b border-latte/80 py-3 font-display text-xl transition-colors dark:border-white/20 ${
+                        isActive ? "text-gold" : "text-espresso dark:text-cream"
+                      }`
+                    }
+                  >
+                    {link.label}
+                  </NavLink>
+                </motion.div>
+              ))}
+
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.5, duration: 0.4 }}
+                className="mt-8"
               >
-                Reserve Table
-              </Button>
+                <Button
+                  to="/reservation"
+                  variant="gold"
+                  onClick={() => setOpen(false)}
+                  className="w-full"
+                >
+                  Reserve Table
+                </Button>
+              </motion.div>
             </motion.div>
-          </motion.div>
+          </>
         )}
       </AnimatePresence>
     </header>

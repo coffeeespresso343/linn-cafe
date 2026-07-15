@@ -129,11 +129,11 @@ const Footer = () => {
               <img
                 src="/github.webp"
                 alt="GitHub Logo"
-                className="h-6 w-6 object-cover rounded-4xl ring-2"
+                className="h-6 w-6 object-cover rounded-4xl ring-1 ring-gold"
               />
             </a>
             <p className="text-latte/30">
-              &ldquo;Built with heart and too much coffee&rdquo;
+              Built with heart and too much coffee
             </p>
           </div>
         </div>

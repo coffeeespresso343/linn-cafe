@@ -104,7 +104,13 @@
 
 html {
   scroll-behavior: smooth;
+  color-scheme: light;
 }
+
+html.dark {
+  color-scheme: dark;
+}
+
 
 @media (prefers-reduced-motion: reduce) {
   html {

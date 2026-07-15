@@ -27,8 +27,8 @@ const FIELD_ICONS = {
   name: User,
   email: Mail,
   phone: Phone,
-  date: Calendar,
-  time: Clock,
+  date: "",
+  time: "",
   guests: Users,
 };
 
