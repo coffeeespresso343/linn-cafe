@@ -27,8 +27,8 @@ const FIELD_ICONS = {
   name: User,
   email: Mail,
   phone: Phone,
-  date: "",
-  time: "",
+  date: Calendar,
+  time: Clock,
   guests: Users,
 };
 
@@ -86,7 +86,7 @@ const ReservationForm = () => {
             type={type}
             value={values[name]}
             onChange={handleChange}
-            className={`input-base min-w-0 ${Icon ? "pl-11" : ""} ${errors[name] ? "border-red-400 focus:border-red-400 focus:ring-red-100" : ""}`}
+            className={`input-base ${Icon ? "pl-11" : ""} ${errors[name] ? "border-red-400 focus:border-red-400 focus:ring-red-100" : ""}`}
             {...extra}
           />
         </div>
@@ -158,8 +158,10 @@ const ReservationForm = () => {
         )}
       </div>
 
-      {inputWrap("date", "Date", "date")}
-      {inputWrap("time", "Time", "time")}
+      <div className="grid grid-cols-2 gap-4 sm:contents sm:gap-4">
+        {inputWrap("date", "Date", "date")}
+        {inputWrap("time", "Time", "time")}
+      </div>
 
       <div className="sm:col-span-2">
         <label
