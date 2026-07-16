@@ -27,8 +27,8 @@ const FIELD_ICONS = {
   name: User,
   email: Mail,
   phone: Phone,
-  date: "",
-  time: "",
+  date: Calendar,
+  time: Clock,
   guests: Users,
 };
 
@@ -158,14 +158,11 @@ const ReservationForm = () => {
         )}
       </div>
 
-      <div className="grid min-w-0 grid-cols-2 gap-4 sm:contents">
-        {inputWrap("date", "Date", "date")}
-        {inputWrap("time", "Time", "time")}
+      <div className="grid grid-cols-2 sm:contents gap-4">
+        <div className="min-w-0">{inputWrap("date", "Date", "date")}</div>
+
+        <div className="min-w-0">{inputWrap("time", "Time", "time")}</div>
       </div>
-
-      {inputWrap("date", "Date", "date")}
-
-      {inputWrap("time", "Time", "time")}
 
       <div className="sm:col-span-2">
         <label
