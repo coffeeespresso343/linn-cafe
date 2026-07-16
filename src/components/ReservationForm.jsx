@@ -73,7 +73,7 @@ const ReservationForm = () => {
         >
           {label}*
         </label>
-        <div className="relative">
+        <div className="relative min-w-0">
           {Icon && (
             <Icon
               size={16}
@@ -86,7 +86,7 @@ const ReservationForm = () => {
             type={type}
             value={values[name]}
             onChange={handleChange}
-            className={`input-base ${Icon ? "pl-11" : ""} ${errors[name] ? "border-red-400 focus:border-red-400 focus:ring-red-100" : ""}`}
+            className={`input-base w-full min-w-0 ${Icon ? "pl-11" : ""} ${errors[name] ? "border-red-400 focus:border-red-400 focus:ring-red-100" : ""}`}
             {...extra}
           />
         </div>
@@ -158,13 +158,15 @@ const ReservationForm = () => {
         )}
       </div>
 
-      <div className="relative grid grid-cols-2 gap-4 sm:contents sm:gap-4">
-        <span className="inline-block min-w-0">
-          {inputWrap("date", "Date", "date")}
-        </span>
+      {/* <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+        {inputWrap("date", "Date", "date")}
 
         {inputWrap("time", "Time", "time")}
-      </div>
+      </div> */}
+
+      {inputWrap("date", "Date", "date")}
+
+      {inputWrap("time", "Time", "time")}
 
       <div className="sm:col-span-2">
         <label

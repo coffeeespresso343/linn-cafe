@@ -197,6 +197,12 @@ h4,
   }
 }
 
+input[type="date"],
+input[type="time"] {
+  min-width: 0;
+  width: 100%;
+}
+
 @layer utilities {
   .text-gradient-gold {
     background: linear-gradient(120deg, #C89B3C 0%, #E0BC70 45%, #C89B3C 100%);
