@@ -118,7 +118,7 @@ const ReservationForm = () => {
         placeholder: "+95 9 123 456 789",
       })}
 
-      <div className="relative">
+      <div className="relative min-w-0">
         <label
           htmlFor="guests"
           className="mb-2 block font-body text-xs font-medium uppercase tracking-wide text-coffee/70 dark:text-latte/70"
@@ -158,13 +158,65 @@ const ReservationForm = () => {
         )}
       </div>
 
-      <div className="grid grid-cols-2 sm:contents gap-4">
+      {/* <div className="grid grid-cols-2 sm:contents gap-4">
         <div className="min-w-0">{inputWrap("date", "Date", "date")}</div>
 
         <div className="min-w-0">{inputWrap("time", "Time", "time")}</div>
+      </div> */}
+
+      <div className="min-w-0">
+        <label
+          htmlFor="date"
+          className="mb-2 block font-body text-xs font-medium uppercase tracking-wide text-coffee/70 dark:text-latte/70"
+        >
+          Date
+        </label>
+        <div className="relative min-w-0">
+          <Calendar
+            size={16}
+            className="pointer-events-none absolute left-4 top-1/2 -translate-y-1/2 text-coffee/40 dark:text-latte/40"
+          />
+          <input
+            id="date"
+            name="date"
+            type="date"
+            value={values.date}
+            onChange={handleChange}
+            className={`input-base min-w-0 pl-11 ${errors.date ? "border-red-400 focus:border-red-400 focus:ring-red-100" : ""}`}
+          />
+        </div>
+        {errors.date && (
+          <p className="mt-1.5 font-body text-xs text-red-500">{errors.date}</p>
+        )}
       </div>
 
-      <div className="sm:col-span-2">
+      <div className="min-w-0">
+        <label
+          htmlFor="time"
+          className="mb-2 block font-body text-xs font-medium uppercase tracking-wide text-coffee/70 dark:text-latte/70"
+        >
+          Time
+        </label>
+        <div className="relative min-w-0">
+          <Clock
+            size={16}
+            className="pointer-events-none absolute left-4 top-1/2 -translate-y-1/2 text-coffee/40 dark:text-latte/40"
+          />
+          <input
+            id="time"
+            name="time"
+            type="time"
+            value={values.time}
+            onChange={handleChange}
+            className={`input-base min-w-0 pl-11 ${errors.time ? "border-red-400 focus:border-red-400 focus:ring-red-100" : ""}`}
+          />
+        </div>
+        {errors.time && (
+          <p className="mt-1.5 font-body text-xs text-red-500">{errors.time}</p>
+        )}
+      </div>
+
+      <div className="min-w-0 sm:col-span-2">
         <label
           htmlFor="request"
           className="mb-2 block font-body text-xs font-medium uppercase tracking-wide text-coffee/70 dark:text-latte/70"
