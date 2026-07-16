@@ -1,18 +1,23 @@
 import { AnimatePresence, motion } from "framer-motion";
 import SectionTitle from "../components/SectionTitle";
-import { Coffee, Search } from "lucide-react";
+import { BadgePercent, Coffee, Search } from "lucide-react";
 import { useState, useEffect, useMemo } from "react";
 import { categories, menuItems } from "../data/menuData";
 import MenuCard from "../components/MenuCard";
 import SkeletonCard from "../components/SkeletonCard";
 import { useDebounce } from "react-use";
 import { useRef } from "react";
+import { getPerkById, perks } from "../data/perks";
+import { Link } from "react-router-dom";
 
 const Menu = () => {
   const [query, setQuery] = useState("");
   const [debouncedQuery, setDebouncedQuery] = useState("");
   const [activeCategory, setActiveCategory] = useState("All");
   const [isLoading, setIsLoading] = useState(true);
+
+  const [activePerkId, setActivePerkId] = useState(null);
+  const activePerk = getPerkById(activePerkId);
 
   const resultRef = useRef(null);
 
@@ -71,6 +76,59 @@ const Menu = () => {
           subtitle="Every item, roasted, brewed, and baked with the same standard - from our first espresso to our last croissant."
         />
 
+        {/* Community perks */}
+        <div className="mx-auto mb-8 max-w-3xl rounded-2xl border border-gold/25 bg-gold/6 p-5 sm:p-6">
+          <div className="mb-4 flex items-center gap-2">
+            <BadgePercent size={17} className="text-gold" />
+            <p className="font-body text-xs font-semibold uppercase tracking-wide text-coffee/80 dark:text-latte/80">
+              I ma a...
+            </p>
+          </div>
+          <div className="flex flex-wrap gap-2.5">
+            <button
+              type="button"
+              onClick={() => setActivePerkId(null)}
+              className={`rounded-full border px-4 py-2 font-body text-xs font-medium transition-all duration-300 sm:text-sm ${
+                activePerkId === null
+                  ? "border-espresso bg-espresso text-cream shadow-soft dark:border-gold dark:bg-gold dark:text-espresso-dark"
+                  : "border-latte text-coffee/70 hover:border-gold hover:text-gold dark:border-white/15 dark:text-latte/70"
+              }`}
+            >
+              Regular Guest
+            </button>
+            {perks.map((perk) => (
+              <button
+                key={perk.id}
+                onClick={() => setActivePerkId(perk.id)}
+                className={`rounded-full border px-4 py-2 font-body text-xs font-medium transition-all duration-300 sm:text-sm ${
+                  activePerkId === perk.id
+                    ? "border-espresso bg-espresso text-cream shadow-soft dark:border-gold dark:bg-gold dark:text-espresso-dark"
+                    : "border-latte text-coffee/70 hover:border-gold hover:text-gold dark:border-white/15 dark:text-latte/70"
+                }`}
+              >
+                {perk.label} . {perk.discount}% off
+              </button>
+            ))}
+          </div>
+          {activePerk && (
+            <motion.p
+              initial={{ opacity: 0, y: -6 }}
+              animate={{ opacity: 1, y: 0 }}
+              className="mt-4 font-body text-xs text-coffee/70 dark:text-latte/70"
+            >
+              Price below reflect your {activePerk.discount}%{" "}
+              {activePerk.label.toLowerCase()} discount.{" "}
+              {activePerk.requirement}{" "}
+              <Link
+                to="/perks"
+                className="text-gold underline underline-offset-2 hover:text-gold-light"
+              >
+                More about perks
+              </Link>
+            </motion.p>
+          )}
+        </div>
+
         <div className="mx-auto mb-10 flex max-w-2xl flex-col gap-4 sm:flex-row sm:items-center">
           <div className="relative flex-1">
             <Search
@@ -96,7 +154,7 @@ const Menu = () => {
                 handleCategoryChange(cat);
               }}
               className={`rounded-full border px-4 py-2 font-body text-xs font-medium uppercase tracking-wide transition-all duration-300 sm:text-sm ${
-                activeCategory == cat
+                activeCategory === cat
                   ? "border-gold bg-gold text-espresso shadow-soft"
                   : "border-latte text-coffee/70 hover:border-gold hover:text-gold dark:border-white/10 dark:text-latte/70"
               }`}
@@ -120,7 +178,12 @@ const Menu = () => {
             >
               <AnimatePresence mode="popLayout">
                 {filtered.map((item, i) => (
-                  <MenuCard key={item.id} item={item} index={i} />
+                  <MenuCard
+                    key={item.id}
+                    item={item}
+                    index={i}
+                    discountPercent={activePerk?.discount ?? 0}
+                  />
                 ))}
               </AnimatePresence>
             </motion.div>

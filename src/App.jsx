@@ -10,6 +10,7 @@ import MainLayout from "./layouts/MainLayout";
 import { AnimatePresence, motion } from "framer-motion";
 import { useEffect, useState } from "react";
 import LoadingScreen from "./components/LoadingScreen";
+import Perks from "./pages/Perks";
 
 const PageTranslation = ({ children }) => {
   return (
@@ -76,6 +77,14 @@ const AnimatedRoutes = () => {
             element={
               <PageTranslation>
                 <Contact />
+              </PageTranslation>
+            }
+          />
+          <Route
+            path="/perks"
+            element={
+              <PageTranslation>
+                <Perks />
               </PageTranslation>
             }
           />
