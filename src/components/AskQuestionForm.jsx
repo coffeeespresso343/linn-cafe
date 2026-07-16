@@ -119,7 +119,7 @@ const AskQuestionForm = () => {
         <Button
           type="submit"
           variant="primary"
-          className="w-full sm:w-auto"
+          className="w-full "
           disabled={isSubmitting}
           icon={isSubmitting ? undefined : Send}
         >

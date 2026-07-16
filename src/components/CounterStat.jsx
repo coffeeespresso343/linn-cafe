@@ -1,7 +1,13 @@
 import { motion } from "framer-motion";
 import { useCountUp } from "../hooks/useCountUp";
 
-const CounterStat = ({ value, suffix = "", label, index = 0 }) => {
+const CounterStat = ({
+  isHero = false,
+  value,
+  suffix = "",
+  label,
+  index = 0,
+}) => {
   const { ref, value: current } = useCountUp(value);
   return (
     <motion.div
@@ -12,11 +18,15 @@ const CounterStat = ({ value, suffix = "", label, index = 0 }) => {
       transition={{ duration: 0.5, delay: index * 0.1 }}
       className="text-center"
     >
-      <p className="font-display text-4xl font-bold text-gold sm:text-5xl">
+      <p
+        className={`font-display ${isHero ? "text-2xl font-semibold text-gold sm:text-3xl" : "text-4xl font-bold text-gold sm:text-5xl"}`}
+      >
         {current.toLocaleString()}
         {suffix}
       </p>
-      <p className="mt-2 font-body text-xs uppercase tracking-wide text-latte/70 sm:text-sm">
+      <p
+        className={`font-body uppercase text-xs tracking-wide sm:text-sm ${isHero ? "mt-1 text-latte/60" : "mt-2 text-latte/70 sm:text-sm"}`}
+      >
         {label}
       </p>
     </motion.div>

@@ -60,7 +60,7 @@ const About = () => {
             src="https://images.unsplash.com/photo-1521017432531-fbd92d768814?q=80&w=1000&auto=format&fit=crop"
             alt="Interior of Linn Cafe roastery"
             loading="lazy"
-            className="h-105 w-full object-cover"
+            className="h-99 w-full object-cover"
           />
         </motion.div>
       </section>
@@ -205,6 +205,7 @@ const About = () => {
             {stats.map((s, i) => (
               <CounterStat
                 key={s.id}
+                isHero={false}
                 value={s.value}
                 suffix={s.suffix}
                 label={s.label}

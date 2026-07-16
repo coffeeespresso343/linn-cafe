@@ -13,6 +13,7 @@ import {
 import { validateReservation } from "../utils/validators.js";
 import Button from "../components/Button";
 import LoadingSpinner from "../components/LoadingSpinner";
+import { useToast } from "../context/ToastContext.jsx";
 
 const initialValues = {
   name: "",
@@ -37,6 +38,8 @@ const ReservationForm = () => {
   const [errors, setErrors] = useState({});
   const [isSubmitting, setIsSubmitting] = useState(false);
 
+  const { showToast } = useToast();
+
   const handleChange = (e) => {
     const { name, value } = e.target;
     setValues((v) => ({ ...v, [name]: value }));
@@ -51,14 +54,17 @@ const ReservationForm = () => {
 
     if (Object.keys(validationErrors).length > 0) {
       setErrors((err) => ({ ...err, [name]: undefined }));
-      // Toast later
+      showToast("Please fix the highlighted fields.", "error");
       return;
     }
 
     setIsSubmitting(true);
     await new Promise((res) => setTimeout(res, 1200));
     setIsSubmitting(false);
-    // Toast Later
+    showToast(
+      `Table reserved for ${values.guests} on ${values.date} at ${values.time}. See you soon, ${values.name.split(" ")[0]}!`,
+      "success",
+    );
     setValues(initialValues);
   };
 

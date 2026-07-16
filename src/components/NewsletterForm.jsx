@@ -2,17 +2,21 @@ import { Send } from "lucide-react";
 import LoadingSpinner from "./LoadingSpinner";
 import { isValidEmail } from "../utils/validators";
 import { useState } from "react";
+import { useToast } from "../context/ToastContext";
 
 const NewsletterForm = ({ compact = false }) => {
   const [email, setEmail] = useState("");
   const [error, setError] = useState("");
   const [submitting, setSubmitting] = useState(false);
 
+  const { showToast } = useToast();
+
   const handleSubmit = async (e) => {
     e.preventDefault();
 
     if (!isValidEmail(email)) {
-      setError("Enter a valid email address.");
+      setError("Please enter a valid email address.");
+      showToast("Please enter a valid email address.", "error");
       return;
     }
 
@@ -20,7 +24,11 @@ const NewsletterForm = ({ compact = false }) => {
     setSubmitting(true);
     await new Promise((res) => setTimeout(res, 900));
     setSubmitting(false);
-    // Toast Later
+    showToast(
+      "You're subscribed! Watch your inbox for our next roast notes.",
+      "success",
+    );
+
     setEmail("");
   };
 

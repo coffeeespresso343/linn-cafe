@@ -3,6 +3,13 @@ import CoffeeSteam from "./CoffeeSteam";
 import { motion } from "framer-motion";
 import { ArrowDown } from "lucide-react";
 import Button from "./Button";
+import CounterStat from "./CounterStat";
+
+const stats = [
+  { id: 1, label: "Year Roasting", value: 1, suffix: "+" },
+  { id: 2, label: "Cups Daily", value: 128, suffix: "+" },
+  { id: 3, label: "Partner Farms", value: 12, suffix: "" },
+];
 
 const container = {
   hidden: {},
@@ -83,19 +90,15 @@ const Hero = () => {
           variants={item}
           className="mt-16 grid grid-cols-3 gap-8 border-t border-cream/10 pt-8 sm:gap-14"
         >
-          {[
-            ["1+", "Year Roasting"],
-            ["850+", "Cups Daily"],
-            ["12", "Partner Farms"],
-          ].map(([value, label]) => (
-            <div key={label}>
-              <p className="font-display text-2xl font-semibold text-gold sm:text-3xl">
-                {value}
-              </p>
-              <p className="mt-1 font-body text-xs uppercase tracking-wide text-latte/60 sm:text-sm">
-                {label}
-              </p>
-            </div>
+          {stats.map((s, i) => (
+            <CounterStat
+              key={s.id}
+              isHero={true}
+              value={s.value}
+              suffix={s.suffix}
+              label={s.label}
+              index={i}
+            />
           ))}
         </motion.div>
       </motion.div>

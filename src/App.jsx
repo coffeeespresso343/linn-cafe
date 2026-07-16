@@ -11,6 +11,7 @@ import { AnimatePresence, motion } from "framer-motion";
 import { useEffect, useState } from "react";
 import LoadingScreen from "./components/LoadingScreen";
 import Perks from "./pages/Perks";
+import { useToast } from "./context/ToastContext";
 
 const PageTranslation = ({ children }) => {
   return (
@@ -104,12 +105,14 @@ const AnimatedRoutes = () => {
 
 function App() {
   const [isLoading, setIsLoading] = useState(true);
+  const { showToast } = useToast();
 
   useEffect(() => {
     const t = window.setTimeout(() => setIsLoading(false), 1400);
+    showToast("Hello, Welcome to Linn Cafe", "info");
 
     return () => window.clearTimeout(t);
-  }, []);
+  }, [showToast]);
 
   return (
     <>

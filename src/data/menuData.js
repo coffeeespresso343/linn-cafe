@@ -32,16 +32,7 @@ export const menuItems = [
     image:
       "https://images.unsplash.com/photo-1510707577719-ae7c14805e3a?q=80&w=800&auto=format&fit=crop",
   },
-  {
-    id: "esp-03",
-    name: "Espresso Macchiato",
-    category: "Espresso",
-    description:
-      'A shot of espresso "stained" with a dollop of steamed milk foam.',
-    price: 4.2,
-    image:
-      "https://images.unsplash.com/photo-1521302200778-33500795e128?q=80&w=800&auto=format&fit=crop",
-  },
+
   {
     id: "cap-01",
     name: "Cappuccino",
@@ -174,6 +165,7 @@ export const menuItems = [
     price: 4.2,
     image:
       "https://images.unsplash.com/photo-1544787219-7f47ccb76574?q=80&w=800&auto=format&fit=crop",
+    popular: true,
   },
   {
     id: "tea-02",

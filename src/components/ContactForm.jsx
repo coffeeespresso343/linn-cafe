@@ -4,12 +4,14 @@ import { Mail, MessagesSquare, Send, User } from "lucide-react";
 import { validateContact } from "../utils/validators.js";
 import Button from "../components/Button";
 import LoadingSpinner from "../components/LoadingSpinner";
+import { useToast } from "../context/ToastContext.jsx";
 
 const initialValues = { name: "", email: "", message: "" };
 const ContactForm = () => {
   const [values, setValues] = useState(initialValues);
   const [errors, setErrors] = useState({});
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const { showToast } = useToast();
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -25,14 +27,14 @@ const ContactForm = () => {
 
     if (Object.keys(validationErrors).length > 0) {
       setErrors((err) => ({ ...err, [name]: undefined }));
-      // Toast later
+      showToast("Please fix the highlighted fields.", "error");
       return;
     }
 
     setIsSubmitting(true);
     await new Promise((res) => setTimeout(res, 1200));
     setIsSubmitting(false);
-    // Toast later
+    showToast("Message sent! We will get back to you within a day.", "success");
     setValues(initialValues);
   };
   return (
