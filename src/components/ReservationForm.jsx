@@ -158,8 +158,11 @@ const ReservationForm = () => {
         )}
       </div>
 
-      <div className="grid grid-cols-2 gap-4 sm:contents sm:gap-4">
-        {inputWrap("date", "Date", "date")}
+      <div className="relative grid grid-cols-2 gap-4 sm:contents sm:gap-4">
+        <span className="inline-block min-w-0">
+          {inputWrap("date", "Date", "date")}
+        </span>
+
         {inputWrap("time", "Time", "time")}
       </div>
 
