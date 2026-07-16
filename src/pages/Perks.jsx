@@ -12,8 +12,8 @@ const Perks = () => {
       <section className="container-page">
         <SectionTitle
           eyebrow="Community Perks"
-          title="A Little Thank You"
-          subtitle="Students, developers, teachers, healthcare workers, and service members - flash your ID at the counter for one of these standing discounts."
+          title="Made for Our Community"
+          subtitle="Thoughtfully crafted rewards for students, developers, teachers, and healthcare professionals who inspire us every day."
         />
 
         <motion.div
@@ -44,7 +44,7 @@ const Perks = () => {
           <SectionTitle
             light
             eyebrow="Not Sure You Qualify"
-            title="Just As at the Counter"
+            title="Just Ask at the Counter"
             subtitle="Our baristas are happy to help you find the right discount - no app, no sign-up, no fuss."
           />
         </div>

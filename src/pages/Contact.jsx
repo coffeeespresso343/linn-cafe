@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import FaqAccordion from "../components/FaqAccordion";
 import { faqs } from "../data/faqs";
 import ContactForm from "../components/ContactForm";
+import AskQuestionForm from "../components/AskQuestionForm";
 
 const SOCIAL_ICONS = [
   { alt: "Instagram", src: "/instagram.svg" },
@@ -95,10 +96,11 @@ const Contact = () => {
         </div>
       </section>
 
-      <section className="mt-28 pt-12 bg-latte/25 dark:bg-white/3">
+      <section className="mt-28 pt-12 pb-24 bg-latte/25 dark:bg-white/3">
         <div className="container-page">
           <SectionTitle eyebrow="FAQ" title="Common Questions" />
           <FaqAccordion items={faqs} />
+          <AskQuestionForm />
         </div>
       </section>
     </div>

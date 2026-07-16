@@ -108,10 +108,10 @@ const ReservationForm = () => {
       noValidate
       className="card-surface grid grid-cols-1 gap-5 p-7 sm:grid-cols-2 sm:p-9"
     >
-      {inputWrap("name", "Full Name", "text", { placeholder: "Linn Khant" })}
+      {inputWrap("name", "Full Name", "text", { placeholder: "Your name" })}
 
       {inputWrap("email", "Email Address", "email", {
-        placeholder: "linnkhant@gmail.com",
+        placeholder: "you@example.com",
       })}
 
       {inputWrap("phone", "Phone Number", "tel", {

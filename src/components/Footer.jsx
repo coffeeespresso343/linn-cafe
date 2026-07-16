@@ -47,7 +47,7 @@ const Footer = () => {
                 <a
                   key={i}
                   href="/not-found"
-                  target="_blank"
+                  // target="_blank"
                   rel="noopener noreferrer"
                 >
                   <img

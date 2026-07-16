@@ -1,6 +1,5 @@
 import { motion } from "framer-motion";
 import { galleryImages } from "../data/gallery";
-import { ArrowBigDown } from "lucide-react";
 
 const posts = galleryImages.slice(0, 6);
 
@@ -10,7 +9,7 @@ const InstagramGrid = () => {
       {posts.map((post, i) => (
         <motion.a
           key={post.id}
-          href="#"
+          href="/not-found"
           initial={{ opacity: 0, scale: 0.9 }}
           whileInView={{ opacity: 1, scale: 1 }}
           viewport={{ once: true }}

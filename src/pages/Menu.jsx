@@ -76,12 +76,29 @@ const Menu = () => {
           subtitle="Every item, roasted, brewed, and baked with the same standard - from our first espresso to our last croissant."
         />
 
+        <div className="mx-auto mb-10 flex max-w-2xl flex-col gap-4 sm:flex-row sm:items-center">
+          <div className="relative flex-1">
+            <Search
+              size={17}
+              className="absolute pointer-events-none left-4 top-1/2 -translate-y-1/2 text-coffee/40 dark:text-latte/40"
+            />
+            <input
+              type="text"
+              value={query}
+              onChange={(e) => setQuery(e.target.value)}
+              placeholder="Search the menu..."
+              aria-label="Search menu items"
+              className="input-base pl-11"
+            />
+          </div>
+        </div>
+
         {/* Community perks */}
         <div className="mx-auto mb-8 max-w-3xl rounded-2xl border border-gold/25 bg-gold/6 p-5 sm:p-6">
           <div className="mb-4 flex items-center gap-2">
             <BadgePercent size={17} className="text-gold" />
             <p className="font-body text-xs font-semibold uppercase tracking-wide text-coffee/80 dark:text-latte/80">
-              I ma a...
+              I am a...
             </p>
           </div>
           <div className="flex flex-wrap gap-2.5">
@@ -106,7 +123,7 @@ const Menu = () => {
                     : "border-latte text-coffee/70 hover:border-gold hover:text-gold dark:border-white/15 dark:text-latte/70"
                 }`}
               >
-                {perk.label} . {perk.discount}% off
+                {perk.label.slice(0, -1)} . {perk.discount}% off
               </button>
             ))}
           </div>
@@ -129,23 +146,6 @@ const Menu = () => {
           )}
         </div>
 
-        <div className="mx-auto mb-10 flex max-w-2xl flex-col gap-4 sm:flex-row sm:items-center">
-          <div className="relative flex-1">
-            <Search
-              size={17}
-              className="absolute pointer-events-none left-4 top-1/2 -translate-y-1/2 text-coffee/40 dark:text-latte/40"
-            />
-            <input
-              type="text"
-              value={query}
-              onChange={(e) => setQuery(e.target.value)}
-              placeholder="Search the menu..."
-              aria-label="Search menu items"
-              className="input-base pl-11"
-            />
-          </div>
-        </div>
-
         <div className="mb-14 flex flex-wrap justify-center gap-2.5">
           {categories.map((cat) => (
             <button
@@ -155,8 +155,8 @@ const Menu = () => {
               }}
               className={`rounded-full border px-4 py-2 font-body text-xs font-medium uppercase tracking-wide transition-all duration-300 sm:text-sm ${
                 activeCategory === cat
-                  ? "border-gold bg-gold text-espresso shadow-soft"
-                  : "border-latte text-coffee/70 hover:border-gold hover:text-gold dark:border-white/10 dark:text-latte/70"
+                  ? "border-espresso bg-espresso text-cream shadow-soft dark:border-gold dark:bg-gold dark:text-espresso-dark"
+                  : "border-latte text-coffee/70 hover:border-gold hover:text-gold dark:border-white/15 dark:text-latte/70"
               }`}
             >
               {cat}

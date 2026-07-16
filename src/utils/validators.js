@@ -30,3 +30,12 @@ export function validateContact(values) {
     errors.message = "Message should be at least 10 characters.";
   return errors;
 }
+
+export function validateQuestion(values) {
+  const errors = {};
+  if (!values.email || !isValidEmail(values.email))
+    errors.email = "Enter a valid email address.";
+  if (!values.question || values.question.trim().length < 10)
+    errors.question = "Your question should be at least 10 characters.";
+  return errors;
+}

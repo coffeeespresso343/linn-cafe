@@ -1,4 +1,12 @@
-import { BookOpen, Code2, GraduationCap, HeartPulse } from "lucide-react";
+import {
+  BookOpen,
+  Briefcase,
+  Code2,
+  GraduationCap,
+  HeartPulse,
+  Sunrise,
+  Users,
+} from "lucide-react";
 
 export const perks = [
   {
@@ -22,7 +30,7 @@ export const perks = [
     id: "teacher",
     label: "Teachers",
     icon: BookOpen,
-    discount: 10,
+    discount: 15,
     tagline: "A small thank you for shaping minds.",
     requirement: "Show a school ID or staff badge.",
   },
@@ -30,9 +38,33 @@ export const perks = [
     id: "healthcare",
     label: "Healthcare Workers",
     icon: HeartPulse,
-    discount: 10,
+    discount: 15,
     tagline: "On us, between shifts.",
     requirement: "Show a hospital or clinic ID badge.",
+  },
+  {
+    id: "earlybird",
+    label: "Early Birds",
+    icon: Sunrise,
+    discount: 5,
+    tagline: "Morning coffee at a better price.",
+    requirement: "Before 9:00 AM daily.",
+  },
+  {
+    id: "office",
+    label: "Offices",
+    icon: Briefcase,
+    discount: 10,
+    tagline: "Perfect for meetings and team breaks.",
+    requirement: "Orders over $50.",
+  },
+  {
+    id: "group",
+    label: "Groups",
+    icon: Users,
+    discount: 10,
+    tagline: "Coffee tastes better together.",
+    requirement: "For groups of 4 or more.",
   },
 ];
 
