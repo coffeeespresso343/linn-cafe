@@ -1,7 +1,9 @@
 import { motion } from "framer-motion";
+import { useNavigate } from "react-router-dom";
 
 const PerkCard = ({ perk, index = 0 }) => {
   const Icon = perk.icon;
+  const navigate = useNavigate();
 
   return (
     <motion.article
@@ -11,6 +13,13 @@ const PerkCard = ({ perk, index = 0 }) => {
       transition={{ duration: 0.5, delay: index * 0.08 }}
       whileHover={{ y: -6 }}
       className="card-surface relative overflow-hidden p-7"
+      onClick={() =>
+        navigate("/menu", {
+          state: {
+            perkId: perk.id,
+          },
+        })
+      }
     >
       <span className="absolute right-5 top-5 flex items-center gap-1 rounded-full bg-gold px-3 py-1 font-body text-xs font-semibold text-espresso shadow-soft">
         {perk.discount}% OFF

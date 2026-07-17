@@ -35,7 +35,7 @@ export function ToastProvider({ children }) {
             return (
               <motion.div
                 key={toast.id}
-                initial={{ opacity: 0, y: 40, scale: 0.9 }}
+                initial={{ opacity: 0, y: -80, scale: 0.9 }}
                 animate={{ opacity: 1, y: 0, scale: 1 }}
                 exit={{
                   opacity: 0,
@@ -49,7 +49,7 @@ export function ToastProvider({ children }) {
                   stiffness: 260,
                   damping: 22,
                 }}
-                className="pointer-events-auto flex items-start gap-3 rounded-2xl border border-white/15 bg-white/50 p-4 pr-3 shadow-[0_12px_40px_rbga(0,0,0,0.12)] backdrop-blur-3xl ring-1 ring-white/20 dark:border-white/10 dark:bg-espresso/45 dark:ring-white/10"
+                className="pointer-events-auto flex items-start gap-3 rounded-2xl border border-white/15 bg-white/50 p-4 pr-3 shadow-[0_12px_40px_rgba(0,0,0,0.12)] backdrop-blur-3xl ring-1 ring-white/20 dark:border-white/10 dark:bg-espresso/45 dark:ring-white/10"
               >
                 <Icon
                   size={20}

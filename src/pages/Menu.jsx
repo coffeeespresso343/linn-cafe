@@ -8,18 +8,35 @@ import SkeletonCard from "../components/SkeletonCard";
 import { useDebounce } from "react-use";
 import { useRef } from "react";
 import { getPerkById, perks } from "../data/perks";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 
 const Menu = () => {
+  const location = useLocation();
+
   const [query, setQuery] = useState("");
   const [debouncedQuery, setDebouncedQuery] = useState("");
   const [activeCategory, setActiveCategory] = useState("All");
   const [isLoading, setIsLoading] = useState(true);
 
-  const [activePerkId, setActivePerkId] = useState(null);
+  const [activePerkId, setActivePerkId] = useState(
+    location.state?.perkId ?? null,
+  );
+
   const activePerk = getPerkById(activePerkId);
 
   const resultRef = useRef(null);
+  const perkRef = useRef(null);
+
+  useEffect(() => {
+    if (!location.state?.perkId) return;
+
+    requestAnimationFrame(() => {
+      perkRef.current?.scrollIntoView({
+        behavior: "smooth",
+        block: "start",
+      });
+    });
+  }, [location.state]);
 
   useEffect(() => {
     if (!debouncedQuery.trim()) return;
@@ -94,7 +111,10 @@ const Menu = () => {
         </div>
 
         {/* Community perks */}
-        <div className="mx-auto mb-8 max-w-3xl rounded-2xl border border-gold/25 bg-gold/6 p-5 sm:p-6">
+        <div
+          ref={perkRef}
+          className="scroll-mt-50 mx-auto mb-8 max-w-3xl rounded-2xl border border-gold/25 bg-gold/6 p-5 sm:p-6"
+        >
           <div className="mb-4 flex items-center gap-2">
             <BadgePercent size={17} className="text-gold" />
             <p className="font-body text-xs font-semibold uppercase tracking-wide text-coffee/80 dark:text-latte/80">
