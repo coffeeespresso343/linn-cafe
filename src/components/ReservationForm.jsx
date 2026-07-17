@@ -91,6 +91,7 @@ const ReservationForm = () => {
             type={type}
             value={values[name]}
             onChange={handleChange}
+            required
             className={`input-base w-full min-w-0 ${Icon ? "pl-11" : ""} ${errors[name] ? "border-red-400 focus:border-red-400 focus:ring-red-100" : ""}`}
             {...extra}
           />

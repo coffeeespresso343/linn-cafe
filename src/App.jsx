@@ -123,7 +123,7 @@ function App() {
     if (sessionStorage.getItem("linn-cafe-toast-shown")) return;
 
     if (hasVisited) {
-      showToast("Welcome back! Good to see you again \u2615", "info");
+      showToast("Welcome back! Good to see you again.", "info");
     } else {
       showToast("Welcome to Linn Cafe! Take a look around.", "success");
       setHasVisited(true);

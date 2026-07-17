@@ -26,6 +26,7 @@ const Menu = () => {
 
   const resultRef = useRef(null);
   const perkRef = useRef(null);
+  const categoryRef = useRef(null);
 
   useEffect(() => {
     if (!location.state?.perkId) return;
@@ -84,6 +85,15 @@ const Menu = () => {
     });
   };
 
+  const handleCategoryRef = () => {
+    requestAnimationFrame(() => {
+      categoryRef.current?.scrollIntoView({
+        behavior: "smooth",
+        block: "center",
+      });
+    });
+  };
+
   return (
     <div className="pb-24 pt-36">
       <section className="container-page">
@@ -138,6 +148,7 @@ const Menu = () => {
                 key={perk.id}
                 onClick={() => {
                   setActivePerkId(perk.id);
+                  handleCategoryRef();
                 }}
                 className={`rounded-full border px-4 py-2 font-body text-xs font-medium transition-all duration-300 sm:text-sm ${
                   activePerkId === perk.id
@@ -168,7 +179,10 @@ const Menu = () => {
           )}
         </div>
 
-        <div className="mb-14 flex flex-wrap justify-center gap-2.5">
+        <div
+          ref={categoryRef}
+          className="scroll-mt-26 mb-14 flex flex-wrap justify-center gap-2.5"
+        >
           {categories.map((cat) => (
             <button
               key={cat}

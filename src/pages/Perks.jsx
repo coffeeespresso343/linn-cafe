@@ -28,7 +28,7 @@ const Perks = () => {
         </motion.div>
 
         <div className="mt-14 flex justify-center">
-          <Button to="/menu" variant="primary" icon={ArrowRight}>
+          <Button to="/menu" variant="ghost" icon={ArrowRight}>
             Preview Your Discount on the Menu
           </Button>
         </div>

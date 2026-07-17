@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { Coffee } from "lucide-react";
+import { ArrowLeft, Coffee } from "lucide-react";
 import Button from "../components/Button";
 
 const NotFound = () => {
@@ -23,8 +23,8 @@ const NotFound = () => {
       <p className="mt-3 max-w-sm font-body text-sm text-coffee/70 dark:text-latte/70">
         Let's get you back to something warm.
       </p>
-      <div className="mt-8">
-        <Button to="/" variant="primary">
+      <div className="mt-8 ">
+        <Button to="/" variant="primary" icon={ArrowLeft}>
           Back to Home
         </Button>
       </div>

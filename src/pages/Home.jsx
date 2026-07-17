@@ -61,7 +61,7 @@ const Home = () => {
           <SectionTitle
             eyebrow="Guest Favorites"
             title="Best Sellers"
-            subtitle="The drinks and treats our regulars order again adn again."
+            subtitle="The drinks and treats our regulars order again and again."
           />
 
           <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
