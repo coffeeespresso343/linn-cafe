@@ -16,7 +16,6 @@ const NewsletterForm = ({ compact = false }) => {
 
     if (!isValidEmail(email)) {
       setError("Please enter a valid email address.");
-      showToast("Please enter a valid email address.", "error");
       return;
     }
 

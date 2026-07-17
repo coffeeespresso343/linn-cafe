@@ -26,7 +26,6 @@ const ContactForm = () => {
     setErrors(validationErrors);
 
     if (Object.keys(validationErrors).length > 0) {
-      setErrors((err) => ({ ...err, [name]: undefined }));
       showToast("Please fix the highlighted fields.", "error");
       return;
     }
@@ -34,7 +33,7 @@ const ContactForm = () => {
     setIsSubmitting(true);
     await new Promise((res) => setTimeout(res, 1200));
     setIsSubmitting(false);
-    showToast("Message sent! We will get back to you within a day.", "success");
+    showToast("Message sent! We'll get back to you within a day.", "success");
     setValues(initialValues);
   };
   return (

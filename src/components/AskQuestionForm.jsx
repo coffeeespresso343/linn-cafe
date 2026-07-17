@@ -4,6 +4,7 @@ import { useState } from "react";
 import { validateQuestion } from "../utils/validators";
 import Button from "../components/Button";
 import LoadingSpinner from "../components/LoadingSpinner";
+import { useToast } from "../context/ToastContext";
 
 const initialValues = { emali: "", question: "" };
 
@@ -11,6 +12,7 @@ const AskQuestionForm = () => {
   const [values, setValues] = useState(initialValues);
   const [errors, setErrors] = useState({});
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const { showToast } = useToast();
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -25,15 +27,14 @@ const AskQuestionForm = () => {
     setErrors(validationErrors);
 
     if (Object.keys(validationErrors).length > 0) {
-      // Toast later
-      setErrors((err) => ({ ...err, [name]: undefined }));
+      showToast("Please fix the highlighted fields.", "error");
       return;
     }
 
     setIsSubmitting(true);
     await new Promise((res) => setTimeout(res, 1000));
     setIsSubmitting(false);
-    // Toast later
+    showToast("Question sent! We'll reply within a day.", "success");
     setValues(initialValues);
   };
   return (
@@ -124,9 +125,9 @@ const AskQuestionForm = () => {
           icon={isSubmitting ? undefined : Send}
         >
           {isSubmitting ? (
-            <>
+            <span className="flex items-center gap-1.5">
               <LoadingSpinner size={16} /> Sending...
-            </>
+            </span>
           ) : (
             "Ask Your Question"
           )}

@@ -53,7 +53,6 @@ const ReservationForm = () => {
     setErrors(validationErrors);
 
     if (Object.keys(validationErrors).length > 0) {
-      setErrors((err) => ({ ...err, [name]: undefined }));
       showToast("Please fix the highlighted fields.", "error");
       return;
     }

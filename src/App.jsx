@@ -12,6 +12,7 @@ import { useEffect, useState } from "react";
 import LoadingScreen from "./components/LoadingScreen";
 import Perks from "./pages/Perks";
 import { useToast } from "./context/ToastContext";
+import { useLocalStorage } from "./hooks/useLocalStorage";
 
 const PageTranslation = ({ children }) => {
   return (
@@ -105,14 +106,27 @@ const AnimatedRoutes = () => {
 
 function App() {
   const [isLoading, setIsLoading] = useState(true);
+  const [hasVisited, setHasVisited] = useLocalStorage(
+    "linn-cafe-visited",
+    false,
+  );
   const { showToast } = useToast();
 
   useEffect(() => {
     const t = window.setTimeout(() => setIsLoading(false), 1400);
-    showToast("Hello, Welcome to Linn Cafe", "info");
-
     return () => window.clearTimeout(t);
-  }, [showToast]);
+  }, []);
+
+  useEffect(() => {
+    if (isLoading) return;
+
+    if (hasVisited) {
+      showToast("Welcome back! Good to see you again \u2615", "info");
+    } else {
+      showToast("Welcome to Linn Cafe! Take a look around.", "success");
+      setHasVisited(true);
+    }
+  }, [isLoading]);
 
   return (
     <>
