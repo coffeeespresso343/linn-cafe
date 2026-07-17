@@ -28,13 +28,13 @@ const LoadingScreen = () => {
         </div>
       </div>
       <motion.p className="mt-6 font-display text-xl tracking-wide text-cream">
-        Linn Cafe
+        Linn Caf&eacute;
       </motion.p>
       <motion.p
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 0.6, duration: 0.6 }}
-        className="mt-1 font-body text-xs uppercase tracking-[0.3rem] text-latte/70"
+        className="mt-2 font-body text-xs uppercase tracking-[0.3rem] text-latte/70"
       >
         Brewing your experience
       </motion.p>

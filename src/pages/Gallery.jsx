@@ -32,7 +32,7 @@ const Gallery = () => {
               onClick={() => setActiveFilter(filter)}
               className={`rounded-full border px-5 py-2 font-body text-xs font-medium uppercase tracking-wide translate-all duration-300 sm:text-sm ${
                 activeFilter === filter
-                  ? "border-gold  bg-gold text-espresso shadow-soft"
+                  ? "border-espresso dark:border-gold bg-espresso dark:bg-gold text-cream dark:text-espresso-dark shadow-soft"
                   : "border-latte text-coffee/70 hover:border-gold hover:text-gold dark:border-white/15 dark:text-latte/70"
               }`}
             >

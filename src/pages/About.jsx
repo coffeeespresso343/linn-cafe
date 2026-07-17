@@ -199,7 +199,7 @@ const About = () => {
           <SectionTitle
             light
             eyebrow="By the Numbers"
-            title="Linn Cafe in Numbers"
+            title="Linn Caf&eacute; in Numbers"
           />
           <div className="grid grid-cols-2 gap-8 sm:grid-cols-4">
             {stats.map((s, i) => (

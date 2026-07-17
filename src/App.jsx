@@ -120,13 +120,17 @@ function App() {
   useEffect(() => {
     if (isLoading) return;
 
+    if (sessionStorage.getItem("linn-cafe-toast-shown")) return;
+
     if (hasVisited) {
       showToast("Welcome back! Good to see you again \u2615", "info");
     } else {
       showToast("Welcome to Linn Cafe! Take a look around.", "success");
       setHasVisited(true);
     }
-  }, [isLoading]);
+
+    sessionStorage.setItem("linn-cafe-toast-shown", "true");
+  }, [isLoading, hasVisited, setHasVisited, showToast]);
 
   return (
     <>

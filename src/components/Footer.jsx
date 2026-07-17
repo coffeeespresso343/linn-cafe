@@ -115,7 +115,8 @@ const Footer = () => {
         <div className="mt-14 flex flex-col items-center justify-between gap-4 border-t border-cream/10 pt-8 text-center font-body text-xs text-latte/50 sm:flex-row sm:text-left">
           <p>Crafted with care for coffee people, everywhere.</p>
           <p>
-            &copy; {new Date().getFullYear()} Linn Cafe. All rights reserved.
+            &copy; {new Date().getFullYear()} Linn Caf&eacute;. All rights
+            reserved.
           </p>
 
           <div className="flex  flex-col gap-2 items-center">
