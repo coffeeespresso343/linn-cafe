@@ -136,7 +136,9 @@ const Menu = () => {
             {perks.map((perk) => (
               <button
                 key={perk.id}
-                onClick={() => setActivePerkId(perk.id)}
+                onClick={() => {
+                  setActivePerkId(perk.id);
+                }}
                 className={`rounded-full border px-4 py-2 font-body text-xs font-medium transition-all duration-300 sm:text-sm ${
                   activePerkId === perk.id
                     ? "border-espresso bg-espresso text-cream shadow-soft dark:border-gold dark:bg-gold dark:text-espresso-dark"

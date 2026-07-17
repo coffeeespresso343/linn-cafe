@@ -118,8 +118,6 @@ function App() {
   }, []);
 
   useEffect(() => {
-    showToast("Welcome to Linn Cafe! Take a look around.", "success");
-
     if (isLoading) return;
 
     if (sessionStorage.getItem("linn-cafe-toast-shown")) return;
