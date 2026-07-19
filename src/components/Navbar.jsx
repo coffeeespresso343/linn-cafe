@@ -17,7 +17,9 @@ const LINKS = [
 ];
 
 const Navbar = () => {
-  const [scrolled, setScrolled] = useState(() => window.scrollY > 24);
+  const [scrolled, setScrolled] = useState(() =>
+    typeof window !== "undefined" ? window.scrollY > 24 : false,
+  );
   const [open, setOpen] = useState(false);
   const { theme, toggleTheme } = useTheme();
   const { pathname } = useLocation();
@@ -27,8 +29,9 @@ const Navbar = () => {
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 24);
+
     onScroll();
-    window.addEventListener("scroll", onScroll);
+    window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
@@ -163,6 +166,7 @@ const Navbar = () => {
           </button>
 
           <button
+            type="button"
             onClick={() => setOpen((o) => !o)}
             aria-label="Toggle navigation menu"
             aria-expanded={open}
@@ -179,35 +183,32 @@ const Navbar = () => {
                 transition={{ duration: 0.2 }}
                 className="flex"
               >
-                {open ? <X size={16} /> : <Menu size={16} />}
+                {open ? <X size={17} /> : <Menu size={17} />}
               </motion.span>
             </AnimatePresence>
           </button>
         </div>
       </nav>
 
-      <AnimatePresence>
-        {open && (
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.3 }}
-            className="fixed inset-0 top-20 z-40 bg-espresso/40 backdrop-blur-sm lg:hidden"
-            onClick={() => {
-              setOpen(false);
-            }}
-          />
-        )}
-      </AnimatePresence>
-
       {/* Hamburgar Menu */}
       <AnimatePresence>
         {open && (
           <>
+            <AnimatePresence>
+              <motion.div
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                transition={{ duration: 0.3 }} // bg-espresso/40
+                className="fixed inset-0 top-20 z-40 bg-espresso/40 backdrop-blur-sm lg:hidden"
+                onClick={() => {
+                  setOpen(false);
+                }}
+              />
+            </AnimatePresence>
             <motion.div
-              initial={{ x: "100%" }}
-              animate={{ x: 0 }}
+              initial={{ opacity: 0, x: "100%" }}
+              animate={{ opacity: 1, x: 0 }}
               exit={{ opacity: 0, x: "100%" }}
               transition={{
                 type: "tween",

@@ -1,6 +1,6 @@
 import { AnimatePresence, motion } from "framer-motion";
 import SectionTitle from "../components/SectionTitle";
-import { BadgePercent, Coffee, Search } from "lucide-react";
+import { BadgePercent, Coffee, Search, X } from "lucide-react";
 import { useState, useEffect, useMemo } from "react";
 import { categories, menuItems } from "../data/menuData";
 import MenuCard from "../components/MenuCard";
@@ -113,17 +113,23 @@ const Menu = () => {
               type="text"
               value={query}
               onChange={(e) => setQuery(e.target.value)}
-              placeholder="Search the menu..."
+              placeholder="Search coffee, tea, bakery, desserts...."
               aria-label="Search menu items"
-              className="input-base pl-11"
+              className="input-base pl-11 pr-11"
             />
+            <button
+              onClick={() => setQuery("")}
+              className="absolute right-4 top-1/2 -translate-y-1/2 rounded-full text-coffee/40 dark:text-latte/40"
+            >
+              <X size={16} />
+            </button>
           </div>
         </div>
 
         {/* Community perks */}
         <div
           ref={perkRef}
-          className="scroll-mt-50 mx-auto mb-8 max-w-3xl rounded-2xl border border-gold/25 bg-gold/6 p-5 sm:p-6"
+          className="scroll-mt-48 mx-auto mb-8 max-w-3xl rounded-2xl border border-gold/25 bg-gold/6 p-5 sm:p-6"
         >
           <div className="mb-4 flex items-center gap-2">
             <BadgePercent size={17} className="text-gold" />
@@ -181,7 +187,7 @@ const Menu = () => {
 
         <div
           ref={categoryRef}
-          className="scroll-mt-26 mb-14 flex flex-wrap justify-center gap-2.5"
+          className="scroll-mt-32 mb-14 flex flex-wrap justify-center gap-2.5"
         >
           {categories.map((cat) => (
             <button

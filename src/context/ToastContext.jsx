@@ -14,17 +14,30 @@ export function ToastProvider({ children }) {
   const [toasts, setToasts] = useState([]);
 
   const removeToast = useCallback((id) => {
-    setToasts((prev) => prev.filter((t) => t.id !== id));
+    setToasts((prev) => {
+      const toast = prev.find((t) => t.id === id);
+
+      if (toast?.timeout) {
+        clearTimeout(toast.timeout);
+      }
+
+      return prev.filter((t) => t.id !== id);
+    });
   }, []);
 
   const showToast = useCallback(
     (message, type = "success", duration = 5000) => {
       const id = Date.now() + Math.random();
-      setToasts((prev) => [...prev, { id, message, type }]);
+      const timeout = window.setTimeout(() => {
+        removeToast(id);
+      }, duration);
+
+      setToasts((prev) => [...prev, { id, message, type, duration, timeout }]);
       window.setTimeout(() => removeToast(id), duration);
     },
     [removeToast],
   );
+
   return (
     <ToastContext.Provider value={{ showToast }}>
       {children}
@@ -32,6 +45,12 @@ export function ToastProvider({ children }) {
         <AnimatePresence>
           {toasts.map((toast) => {
             const Icon = ICONS[toast.type] || Info;
+            const barColor =
+              toast.type === "success"
+                ? "bg-emerald-500"
+                : toast.type === "error"
+                  ? "bg-red-500"
+                  : "bg-amber-500";
             return (
               <motion.div
                 key={toast.id}
@@ -45,33 +64,43 @@ export function ToastProvider({ children }) {
                 }}
                 transition={{
                   type: "spring",
-
                   stiffness: 300,
                   damping: 24,
                   mass: 0.8,
                 }}
-                className="pointer-events-auto flex items-start gap-3 rounded-2xl border border-latte/15 bg-white/50 p-4 pr-3 shadow-[0_12px_40px_rgba(0,0,0,0.12)] backdrop-blur-3xl ring-1 ring-white/20 dark:border-white/10 dark:bg-espresso/45 dark:ring-white/10"
+                className="pointer-events-auto relative overflow-hidden rounded-2xl border border-latte/15 bg-white/50 shadow-[0_12px_40px_rgba(0,0,0,0.12)] backdrop-blur-3xl ring-1 ring-white/20 dark:border-white/10 dark:bg-espresso/45 dark:ring-white/10"
               >
-                <Icon
-                  size={20}
-                  className={
-                    toast.type === "success"
-                      ? "mt-0.5 shrink-0 text-emerald-500"
-                      : toast.type === "error"
-                        ? "mt-0.5 shrink-0 text-rose-500"
-                        : "mt-0.5 shrink-0 text-amber-500"
-                  }
+                <div className="flex items-start gap-3 p-4 pr-2">
+                  <Icon
+                    size={20}
+                    className={
+                      toast.type === "success"
+                        ? "mt-0.5 shrink-0 text-emerald-500"
+                        : toast.type === "error"
+                          ? "mt-0.5 shrink-0 text-rose-500"
+                          : "mt-0.5 shrink-0 text-amber-500"
+                    }
+                  />
+                  <p className="font-body text-sm text-espresso dark:text-cream">
+                    {toast.message}
+                  </p>
+                  <button
+                    onClick={() => removeToast(toast.id)}
+                    className="ml-auto shrink-0 rounded-full p-1.5 text-coffee/60 transition-all duration-200 hover:bg-espresso/10 hover:text-espresso dark:text-latte/60 dark:hover:bg-latte/10 dark:hover:text-white"
+                    aria-label="Dismiss notification"
+                  >
+                    <X size={14} strokeWidth={2} />
+                  </button>
+                </div>
+                <motion.div
+                  className={`absolute inset-x-0 bottom-0 h-1 origin-left ${barColor}`}
+                  initial={{ scaleX: 1 }}
+                  animate={{ scaleX: 0 }}
+                  transition={{
+                    duration: toast.duration / 1000,
+                    ease: "linear",
+                  }}
                 />
-                <p className="font-body text-sm text-espresso dark:text-cream">
-                  {toast.message}
-                </p>
-                <button
-                  onClick={() => removeToast(toast.id)}
-                  className="ml-auto shrink-0 rounded-full p-1.5 text-coffee/60 transition-all duration-200 hover:bg-espresso/10 hover:text-espresso dark:text-latte/60 dark:hover:bg-latte/10 dark:hover:text-white"
-                  aria-label="Dismiss notification"
-                >
-                  <X size={14} strokeWidth={2} />
-                </button>
               </motion.div>
             );
           })}
