@@ -26,8 +26,7 @@ const Footer = () => {
         <div className="grid grid-cols-1 gap-12 md:grid-cols-2 lg:grid-cols-4">
           <div>
             <Link to="/" className="mb-4 flex items-center gap-2">
-              <div className="flex h-10 w-10 items-center justify-center rounded-full text-espresso-dark">
-                {/* <Coffee size={18} /> */}
+              <div className="flex h-10 w-10 items-center justify-center shadow-glow rounded-full text-espresso-dark">
                 <img
                   src={Logo}
                   alt="Linn Cafe Logo"
@@ -131,7 +130,7 @@ const Footer = () => {
               <img
                 src="/github.webp"
                 alt="GitHub Logo"
-                className="h-6 w-6 object-cover rounded-4xl ring-1 ring-gold"
+                className="h-6 w-6 object-cover rounded-4xl shadow-glow ring-1 ring-gold"
               />
             </a>
             <p className="text-latte/30">

@@ -1,18 +1,31 @@
 import { motion } from "framer-motion";
-import { ArrowLeft, Coffee } from "lucide-react";
+import { ArrowLeft } from "lucide-react";
 import Button from "../components/Button";
+import Logo from "../assets/logo.png";
 
 const NotFound = () => {
   return (
     <div className="flex min-h-[80vh] flex-col items-center justify-center px-6 pt-20 text-center">
-      <motion.span
+      <motion.div
         initial={{ opacity: 0, scale: 0.7, rotate: -10 }}
         animate={{ opacity: 1, scale: 1, rotate: 0 }}
         transition={{ duration: 0.6, type: "spring" }}
-        className="mb-6 flex h-20 w-20 items-center justify-center rounded-full bg-gold/15 text-gold"
+        className="mb-6 flex items-center justify-center rounded-ful"
       >
-        <Coffee size={34} />
-      </motion.span>
+        <div className="relative h-18 w-18 flex items-center justify-center">
+          <motion.span
+            className="absolute h-full w-full rounded-full border border-gold/40"
+            animate={{ scale: [1, 1.4, 1], opacity: [0.6, 0, 0.6] }}
+            transition={{ duration: 2.2, repeat: Infinity, ease: "easeInOut" }}
+          />
+          <img
+            src={Logo}
+            alt="Linn Cafe logo"
+            loading="lazy"
+            className="rounded-full h-full w-full object-cover shadow-glow"
+          />
+        </div>
+      </motion.div>
       <h1 className="font-display text-5xl font-bold text-espresso dark:text-cream sm:text-6xl">
         404
       </h1>

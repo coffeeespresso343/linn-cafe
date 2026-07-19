@@ -1,6 +1,5 @@
 import { motion } from "framer-motion";
 import Logo from "../assets/logo.png";
-// import { LucideCoffee } from "lucide-react";
 
 const LoadingScreen = () => {
   return (
@@ -18,7 +17,6 @@ const LoadingScreen = () => {
         />
 
         <div className="relative flex h-16 w-16 items-center justify-center rounded-full bg-gold/90 shadow-glow">
-          {/* <LucideCoffee /> */}
           <img
             src={Logo}
             alt="Linn Cafe Logo"

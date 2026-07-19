@@ -76,11 +76,12 @@ const Navbar = () => {
         >
           <span
             className="flex h-10 w-10 items-center justify-center rounded-4xl bg-espresso
-          shadow-soft transition-transform duration-300 group-hover:rotate-12 "
+          shadow-glow transition-transform duration-300 group-hover:rotate-12"
           >
             <img
               src={Logo}
               alt="Linn Cafe Logo"
+              loading="lazy"
               className="rounded-full h-9 w-9 object-cover"
             />
           </span>

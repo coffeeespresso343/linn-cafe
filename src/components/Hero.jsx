@@ -53,7 +53,7 @@ const Hero = () => {
       >
         <motion.span
           variants={item}
-          className="eyebrow mb-5 rounded-full border border-gold/30 px-4 py-1.5"
+          className="eyebrow mb-5 rounded-full font-display border border-gold/30 px-4 py-1.5"
         >
           Small-batch &middot; Freshly Roasted &middot; Est.2025
         </motion.span>

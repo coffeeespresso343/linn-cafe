@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 const VARIANTS = {
   primary:
     "bg-espresso text-cream shadow-soft hover:shadow-glow dark:bg-gold dark:text-espresso-dark",
-  gold: "bg-gold text-espresso shadow-soft hover:shadow-glow",
+  gold: "bg-gold text-espresso shadow-glow sm:shadow-soft sm:hover:shadow-glow",
   outline:
     "border-2 border-cream/70 text-cream backdrop-blur-sm hover:bg-cream hover:text-espresso",
   ghost:
