@@ -50,7 +50,7 @@ export function ToastProvider({ children }) {
                 ? "bg-emerald-500"
                 : toast.type === "error"
                   ? "bg-red-500"
-                  : "bg-amber-500";
+                  : "bg-gold";
             return (
               <motion.div
                 key={toast.id}
@@ -78,7 +78,7 @@ export function ToastProvider({ children }) {
                         ? "mt-0.5 shrink-0 text-emerald-500"
                         : toast.type === "error"
                           ? "mt-0.5 shrink-0 text-rose-500"
-                          : "mt-0.5 shrink-0 text-amber-500"
+                          : "mt-0.5 shrink-0 text-gold"
                     }
                   />
                   <p className="font-body text-sm text-espresso dark:text-cream">
